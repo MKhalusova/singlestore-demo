@@ -1,0 +1,1831 @@
+Delivered-To: maria@unstructured.io
+Received: by 2002:a05:6359:4701:b0:18d:fcba:29c7 with SMTP id ot1csp365146rwb;
+        Fri, 26 Apr 2024 06:36:36 -0700 (PDT)
+X-Received: by 2002:a05:6808:1b21:b0:3c8:42f1:40b2 with SMTP id bx33-20020a0568081b2100b003c842f140b2mr3162850oib.9.1714138596518;
+        Fri, 26 Apr 2024 06:36:36 -0700 (PDT)
+ARC-Seal: i=1; a=rsa-sha256; t=1714138596; cv=none;
+        d=google.com; s=arc-20160816;
+        b=a4iTKv6Q/qDBMDS0YtJPMiMudnLZg+CrCb/VfVx2v0kIhmxZfH9d4FOF0VrSmwv2Vd
+         L5LFbIUZsr84/X+rI6DxVkfBw1nN6zkIXPLaJDVchnMimrqnJ7yUUbbuutQHYUjY+y8Q
+         rhFpDUkRE7oRTR5E/Tujh855buX/LOaEyy/C/Z4/eEFzGDSQcpWW3IThM5/nZUBVsfit
+         xl9iNvFlmiz5I88JFqFuDo+KNbElOCabYcYQjDFyOW9SKmot4jj5alA/T9ifigXz7t2p
+         cqsZ/j4ZbhCd6l/D2lciXkohMsD+j5TvzyXohAKasI7R1oyBdUdn5LNFQYd7zJA8F6tf
+         h63w==
+ARC-Message-Signature: i=1; a=rsa-sha256; c=relaxed/relaxed; d=google.com; s=arc-20160816;
+        h=to:subject:message-id:date:from:mime-version:dkim-signature;
+        bh=x9pjs39whhEHmiIzlmhcZn0+E8NY+kcNDYqVgQoVDQs=;
+        fh=JZOwC3RxxdKqvuTO0hyR02rOOeAXX5wJJVic9pqo9xk=;
+        b=Pwu7yzYHOJRUKvllqNfKNIW8nf2Hv/vxCYbN/gaWFZTj4HlPA1w6Njf0LGs0iz+E4o
+         1WLWbem+5tbNhDn37+q9C7/f5gDs08CKfAOaCfXXfslyWnTamwh6dl6FPWMrZGpuYImI
+         eA7+msp2Cz/q3JUytSr0d+AJbvXjjAreZwgU2s65+G8lOYiZpWaPXzmCk6+qXSAgrghP
+         pfP5QRGFKHq7/aY1Ox2VvCQ8KQjjweyYhyxDwmOSjziOCUb1ifQRe6Jr3YiuovsQ4SpI
+         jirIpJyZbebOY8udJTD7sd+4qqmCHpwdCufVGg8uqMpLKBZYLHFIxRub8I9Gh3dinEu1
+         dRYg==;
+        dara=google.com
+ARC-Authentication-Results: i=1; mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=Vv7NnyC7;
+       spf=pass (google.com: domain of maria.khalusova@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=maria.khalusova@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+Return-Path: <maria.khalusova@gmail.com>
+Received: from mail-sor-f41.google.com (mail-sor-f41.google.com. [209.85.220.41])
+        by mx.google.com with SMTPS id bl19-20020a056808309300b003c70965b5eesor7186938oib.2.2024.04.26.06.36.36
+        for <maria@unstructured.io>
+        (Google Transport Security);
+        Fri, 26 Apr 2024 06:36:36 -0700 (PDT)
+Received-SPF: pass (google.com: domain of maria.khalusova@gmail.com designates 209.85.220.41 as permitted sender) client-ip=209.85.220.41;
+Authentication-Results: mx.google.com;
+       dkim=pass header.i=@gmail.com header.s=20230601 header.b=Vv7NnyC7;
+       spf=pass (google.com: domain of maria.khalusova@gmail.com designates 209.85.220.41 as permitted sender) smtp.mailfrom=maria.khalusova@gmail.com;
+       dmarc=pass (p=NONE sp=QUARANTINE dis=NONE) header.from=gmail.com
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20230601; t=1714138596; x=1714743396; darn=unstructured.io;
+        h=to:subject:message-id:date:from:mime-version:from:to:cc:subject
+         :date:message-id:reply-to;
+        bh=x9pjs39whhEHmiIzlmhcZn0+E8NY+kcNDYqVgQoVDQs=;
+        b=Vv7NnyC7dAxPakWbsfkbt2M+vXkYjTRTNquMZcRku0Ln2wjspImTXp2QD1/RwAw6vi
+         tmseJx0LRP5qIyIlGWUCJjUe4dvC2xY/YLrn6B9sZhaes1A0X7IVrW3GgBLlqFM9dELt
+         mjSBYiXUfW0Rrlyk/PSYkCNryUrxNrOVocBzo5xNWyKwrYKSIjCvDQllxTpPQ0+Yvmpd
+         H2FR9cp+a+7f9MbYVFD5OHY2dSyBkO4CaoMXcicUDEjw+7xjrZFDS4vqxFvyayzIy/QT
+         Lxb5msSYR6ddK7toH/uKiC+G22BsLlinUE0txmATnKs1ttbuyesVToWi4JTU9i5b6DZn
+         oEHQ==
+X-Google-DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=1e100.net; s=20230601; t=1714138596; x=1714743396;
+        h=to:subject:message-id:date:from:mime-version:x-gm-message-state
+         :from:to:cc:subject:date:message-id:reply-to;
+        bh=x9pjs39whhEHmiIzlmhcZn0+E8NY+kcNDYqVgQoVDQs=;
+        b=IE401Yf2tuRASBEJFVhwnLry0FPHCAdBfByWpaavrFRSNehvvVzUwL+iOSGbw6dubB
+         HNtle19lnuQ6OZTYC1lPzr7BOzJZ4DMqR+6FKnli5gagQy8qv5/bVL644Cm9//4LTCTn
+         X3nQ3W0QeER0WMYGROENGcJjxhqB+CKQFBv4Bf4kMOMjAd12u+9zH78fZOL2JdHL54z5
+         8vhpM6xNVdH2Jlj7xB1yITRKr6YbV3scbgmV3DIMZrSaBwEJLYqtuA/sDib5G481xd9/
+         afGzg/3D+yNO2wxzI0YhvsASd+Xn2VtD90j0S8kr0RW0IVZ1b8hSsdYVywMxZmQ82kDB
+         lCXA==
+X-Gm-Message-State: AOJu0YxMvCZ/3wD3YtBcz+j0z4vgM1PZwQD1hpbJEqD0Y+QCoJaBb5VS
+	XI490JPfCvw79bQ8W9carxpQuBzUb31FniAjITAklS5VBGbkmISySZWtTYnBxQTpz/ozPWl70aj
+	6mrNj2Q7de+9yAXN5f6KpMqdFhckqqHQ=
+X-Google-Smtp-Source: AGHT+IF89fCfhlENnjYFFoU7SFPnPAcVXn1hhz1KZ/msrTCOiNUTpgG1KlsWNf7aGd283QWrNrjil9MWCyNU0m4mIT0=
+X-Received: by 2002:a05:6808:4405:b0:3c6:f07a:bc4b with SMTP id
+ eo5-20020a056808440500b003c6f07abc4bmr2811281oib.44.1714138594623; Fri, 26
+ Apr 2024 06:36:34 -0700 (PDT)
+MIME-Version: 1.0
+From: Maria Khalusova <maria.khalusova@gmail.com>
+Date: Fri, 26 Apr 2024 09:36:23 -0400
+Message-ID: <CAMdGHWV3oBuovEhNAjZ+eLrdJwdtb=WZZ4DLsmGZZMo66BXntw@mail.gmail.com>
+Subject: RAG evaluation article by weaviate
+To: "maria@unstructured.io" <maria@unstructured.io>
+Content-Type: multipart/alternative; boundary="0000000000000749600616fffec2"
+
+--0000000000000749600616fffec2
+Content-Type: text/plain; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+An Overview on RAG Evaluation
+
+Retrieval Augmented Generation (RAG) is picking up steam as one of the most
+popular applications of Large Language Models and Vector Databases. RAG is
+the process of augmenting inputs to a Large Language Model (LLM) with
+context retrieved from a vector database, like Weaviate
+<https://weaviate.io/>. RAG applications are commonly used for chatbots and
+question-answering systems.
+
+Like any engineering system, evaluating performance is crucial to the
+development of RAG applications. The RAG pipeline is broken down into three
+components: 1. Indexing, 2. Retrieval, and 3. Generation. RAG Evaluation is
+tricky because of the series of interacting components and the strain of
+collecting test data. This article will present an exciting development in
+using LLMs to produce evaluations and the state of RAG components.
+
+*TL;DR*: We were inspired to write this blog post from our conversation
+with the creators of Ragas <https://docs.ragas.io/en/latest/>, Jithin James
+and Shauhul Es on the 77th Weaviate podcast
+<https://www.youtube.com/watch?v=3DC-UQwvO8Koc>. These new advances in usin=
+g
+LLMs to evaluate RAG systems, pioneered by Ragas and ARES, motivated us to
+reflect on previous metrics and take inventory of the RAG knobs to tune.
+Our investigation led us to think further about what RAG experiment
+tracking software may look like. We also further clarify how we distinguish
+RAG systems from Agent systems and how to evaluate each.
+
+Our blog post has 5 major sections:
+
+   - *LLM Evaluations*
+   <https://weaviate.io/blog/rag-evaluation#llm-evaluations>: New trends in
+   using LLMs to score RAG performance and scales of Zero-Shot, Few-Shot, a=
+nd
+   Fine-Tuned LLM Evaluators.
+   - *RAG Metrics* <https://weaviate.io/blog/rag-evaluation#rag-metrics>:
+   Common metrics used to evaluate Generation, Search, and Indexing and how
+   they interact with each other.
+   - *RAG: Knobs to Tune*
+   <https://weaviate.io/blog/rag-evaluation#rag-knobs-to-tune>: What
+   decision makes RAG systems perform significantly different from one anot=
+her?
+   - *Orchestrating Tuning*
+   <https://weaviate.io/blog/rag-evaluation#tuning-orchestration>: How do
+   we manage tracking experimental configurations of RAG systems?
+   - *From RAG to Agent Evaluation*
+   <https://weaviate.io/blog/rag-evaluation#from-rag-to-agent-evaluation>:
+   We define RAG as a three step procss of index, retrieve, and generate. T=
+his
+   section describes when a RAG system becomes an Agent system and how Agen=
+t
+   Evaluation differs.
+
+LLM Evaluations
+
+Let=E2=80=99s start with the newest and most exciting component of all this=
+, LLM
+evaluations! The history of machine learning has been heavily driven by the
+manual labor of labeling data, such as whether a Yelp review is positive or
+negative, or whether an article about nutritional supplements is related to
+the query, =E2=80=9CWho is the head coach of the Boston Celtics?=E2=80=9D. =
+LLMs are
+becoming highly effective at data annotation with less manual effort. This
+is the key *=E2=80=9Cwhat=E2=80=99s new=E2=80=9D*development accelerating t=
+he development of RAG
+applications.
+
+The most common technique pioneered by frameworks, like Ragas
+<https://docs.ragas.io/en/latest/>, are Zero-Shot LLM Evaluations.
+Zero-Shot LLM Evaluation describes prompting a Large Language Model with a
+prompt template such as: =E2=80=9CPlease provide a rating on a scale of 1 t=
+o 10 of
+whether these search results are relevant to the query. The query is
+{query}, the search results are {search_results}=E2=80=9D. The visualizatio=
+n below
+shows how an LLM can be used to evaluate the performance of RAG systems.
+
+[image: RAG-evaluation]
+
+There are three major opportunities for tuning Zero-Shot LLM Evaluation: 1.
+the design of the metrics such as precision, recall, or nDCG, 2. the exact
+language of these prompts, and 3. the language model used for evaluation,
+such as GPT-4, Coral, Llama-2, Mistral, and many others. At the time of
+writing this blog post, people are mainly curious on the cost of evaluation
+using an LLM. Let=E2=80=99s use GPT-4 as an example to see the cost of eval=
+uating
+10 search results, assuming 500 tokens per result and 100 tokens for the
+query and instructions, totaling roughly 6,000 tokens per LLM call to make
+the napkin math easier. Then assuming a rate of $0.005 per 1K tokens, this
+would cost $3 to evaluate 100 queries.
+
+The adoption of Zero-Shot LLM Evaluation from frameworks like Ragas is
+widely spreading. This has led to people questioning whether a Few-Shot LLM
+Evaluation is necessary. Due to its =E2=80=9Cgood enough=E2=80=9D status on=
+ the tipping
+scale, Zero-Shot LLM Evaluation may be all that is needed to be a north
+star for RAG system tuning. Shown below, the RAGAS score is made up of 4
+prompts for Zero-Shot LLMs that evaluate the 2 metrics for generation,
+*Faithfulness* and *Answer Relevancy*, as well as 2 metrics for
+retrieval, *Context
+Precision* and *Context Recall*.
+
+[image: Ragas-score]Source
+<https://docs.ragas.io/en/latest/concepts/metrics/index.html>
+
+The transition from Zero-Shot to Few-Shot LLM Evaluation is quite
+straightforward. Instead of using just an instruction template, we add a
+few labeled examples of the relevancy of linked search results to a query.
+This is also known as In-Context Learning, and the discovery of this
+technique was one of the key breakthroughs in GPT-3.
+
+For example, adding 5 examples of human relevance ratings, we add 30,000
+tokens to the prompt. Assuming the same cost as above, we 5x our cost to
+evaluate 100 queries from $3 to $15. Note this is a toy example and not
+based on the real pricing models of LLMs. A key consideration here is that
+adding few-shot examples may require longer context models, which are
+currently priced higher than smaller input LLMs.
+
+This is already a very attractive price for producing an LLM Evaluation
+with Zero-Shot or Few-Shot inference, but further research suggests that
+the price of LLM evaluation can be further reduced with Knowledge
+Distillation training algorithms. This describes taking an LLM, using it to
+generate training data for the task of evaluation and then fine-tuning it
+into a smaller model.
+
+In ARES <https://arxiv.org/abs/2311.09476>: An Automated Evaluation
+Framework for Retrieval-Augmented Generation Systems, Saad-Falcon et al.
+found that training your own LLM evaluator can have a better performance
+than zero-shot prompting. To begin, =E2=80=9CARES requires three inputs for=
+ the
+pipeline: a set of passages from the target corpus, a human preference
+validation set of 150 annotated datapoints or more, and five few-shot
+examples of in-domain queries.=E2=80=9D ARES then uses the few-shot example=
+s of
+queries to generate a large dataset of synthetic queries. These queries are
+then filtered using the roundtrip consistency principle: Can we retrieve
+the document that produced the synthetic query when searching with the
+synthetic query? In addition to the positive chunk that was used to create
+the synthetic query, ARES adds weak negatives by randomly sampling other
+chunks from other documents in the corpus and strong negatives by either
+looking for a chunk in the same document as the one used to produce the
+query, or if unavailable, using one of the top-10 results from a BM25
+query. Now armed with queries, answers, gold documents, and negatives, ARES
+fine-tunes lightweight classifiers for *context relevance*, *answer
+faithfulness*, and *answer relevance*.
+
+The authors experiment with fine-tuning DeBERTa-v3-large
+<https://huggingface.co/microsoft/deberta-v3-large>, which contains a more
+economical 437 million parameters, with each classifier head sharing the
+base language model, adding 3 total classification heads. The ARES system
+is then evaluated by dividing the synthetic data into a train-test split
+and comparing the fine-tuned judges with zero-shot and few-shot
+GPT-3.5-turbo-16k judges, finding that the fine-tuned models perform
+significantly better. For further details, such as a novel use of
+confidence intervals with prediction powered inference (PPI) and more
+experimental details, please see the paper from Saad-Falcon et al
+<https://arxiv.org/abs/2311.09476>.
+
+To better understand the potential impact of LLMs for evaluation, we will
+continue with a tour of the existing methods for benchmarking RAG systems
+and how they are particularly changed with LLM Evaluation.
+RAG Metrics
+
+We are presenting RAG metrics from a top-down view from generation, to
+retrieval, and then indexing. We then present the RAG knobs to tune from a
+bottom-up perspective of building an index, tuning how to retrieve, and
+then options for generation.
+
+Another reason to present RAG Metrics from a top-down view is because
+errors from Indexing will bubble up to Search and then Generation, but
+errors in Generation (as we have defined the stack) have no impact on
+errors in Indexing. In the current state of RAG evaluation, it is uncommon
+to evaluate the RAG stack end-to-end, rather *oracle context*, or *controll=
+ed
+distractors* (such as the Lost in the Middle experiments) are assumed when
+determining faithfulness and answer relevancy in generation. Similarly,
+embeddings are typically evaluated with brute force indexing that doesn=E2=
+=80=99t
+account for approximate nearest neighbor errors. Approximate nearest
+neighbor errors are typically measured by finding pareto-optimal points
+that trade off accuracy with queries per second and recall, ANN recall
+being the ground truth nearest neighbors to a query, rather than documents
+labeled as =E2=80=9Crelevant=E2=80=9D to the query.
+Generation Metrics
+
+The overall goal of a RAG application is to have a helpful output that uses
+the retrieved context for support. The evaluation must consider that the
+output has used the context without directly taking it from the source,
+avoiding redundant information, as well as preventing incomplete answers.
+To score the output, there needs to be a metric that covers each criteria.
+
+Ragas
+<https://docs.ragas.io/en/latest/concepts/metrics/index.html#ragas-metrics>
+introduced
+two scores to measure the performance of an LLM output: faithfulness and
+answer relevancy. Faithfulness
+<https://docs.ragas.io/en/latest/concepts/metrics/faithfulness.html> observ=
+es
+how factually correct the answer is based on the retrieved context. Answer
+relevance
+<https://docs.ragas.io/en/latest/concepts/metrics/answer_relevance.html>
+determines
+how relevant the answer is given the question. An answer can have a high
+faithfulness score, but a low answer relevance score. For example, a
+faithful response is one that copies the context verbatim, however, that
+would result in a low answer relevance. The answer relevance score is
+penalized when an answer lacks completeness or has duplicate information.
+
+In 2020, Google released Meena
+<https://blog.research.google/2020/01/towards-conversational-agent-that-can=
+.html>,
+a conversational agent. The goal of Meena was to show that it can have
+*sensible* and *specific* conversations. To measure the performance of the
+open-domain chatbots, they introduced the Sensibleness and Specificity
+Average (SSA) evaluation metrics. The bot=E2=80=99s response was measured b=
+y its
+sensibleness, meaning it needed to make sense in context and be specific
+(specificity average). This ensures the output is comprehensive without
+being too vague. Back in 2020, this required humans to have conversations
+with the chatbot and manually assign these ratings.
+
+While it is good to avoid vague responses, it is equally important to avoid
+the LLM from *hallucinating*. Hallucination refers to the LLM generating a
+response that is not grounded in actual facts or the provided context.
+LlamaIndex
+<https://docs.llamaindex.ai/en/latest/examples/evaluation/faithfulness_eval=
+.html>measures
+this with a FaithfulnessEvaluator metric. The score is based on whether the
+response matches the retrieved context.
+
+Determining whether a generated response is good or bad is dependent on a
+few metrics. You can have answers that are factual, but not relevant to the
+given query. Additionally, answers can be vague and miss out key contextual
+information to support the response. We will now go one step back through
+the pipeline and cover retrieval metrics.
+Retrieval Metrics
+
+The next layer in the evaluation stack is information retrieval. The
+history of evaluating retrieval has required humans to annotate which
+documents are relevant for a query. So thus, to create 1 query annotation,
+we may need to annotate the relevance of 100 documents. This is already an
+immensely difficult task for general search queries, but becomes
+additionally challenging when building search engines for specific domains
+such as legal contracts, medical patient history, to give a few examples.
+
+To lighten the costs of labeling, heuristics are often used for search
+relevancy. The most common of which being the click log where: given a
+query, the title that was clicked on is likely relevant and the others are
+not. This is also known as weak supervision in machine learning.
+
+Once a dataset has been prepared, there are three common metrics used for
+evaluation: *nDCG*, *Recall*, and *Precision*. NDCG (Normalized Discounted
+Cumulative Gain) measures ranking with multiple relevance labels. For
+example, a document about Vitamin B12 may not be the most relevant result
+to a query about Vitamin D, but it is more relevant than a document about
+the Boston Celtics. Due to the additional difficulty of relative ranking,
+binary relevance labels are often used (1 for relevant, 0 for irrelevant).
+Recall measures how many of the positives were captured in the search
+results. Precision then measures how many of the search results are labeled
+as relevant.
+
+LLMs can thus calculate precision with the prompt: =E2=80=9CHow many of the
+following search results are relevant to the query {query}?
+{search_results}=E2=80=9D. A proxy measure for recall can also be achieved =
+with an
+LLM prompt: =E2=80=9CDo these search results contain all the needed informa=
+tion to
+answer the query {query}? {search_results}=E2=80=9D. We similarly encourage=
+ readers
+to check out some of the prompts available in Ragas here
+<https://github.com/explodinggradients/ragas/tree/main/src/ragas/metrics>.
+
+Another metric worth exploring is LLM Wins, where an LLM is prompted with:
+=E2=80=9CBased on the query {query}, which set of search results are more r=
+elevant?
+Set A {Set_A} or Set B {Set_B}. VERY IMPORTANT! Please restrict your output
+to =E2=80=9CSet A=E2=80=9D or =E2=80=9CSet B=E2=80=9D.
+
+Let=E2=80=99s now dive one layer deeper to understand how vector indexes ar=
+e
+compared with one another.
+Indexing Metrics
+
+Tenured Weaviate users are likely familiar with the ANN Benchmarks
+<https://github.com/erikbern/ann-benchmarks/tree/main>, which for example
+inspired the development of the gRPC API in Weaviate 1.19
+<https://weaviate.io/blog/weaviate-1-19-release#grpc-api-support-experiment=
+al>.
+The ANN Benchmarks measure Queries Per Second versus Recall, with
+additional nuances on single-threaded restrictions and so on. Databases are
+typically evaluated based on latency and storage cost, stochastic vector
+indexes place additional emphasis on accuracy measurement. There is some
+analog with approximation in SQL select statements
+<https://learn.microsoft.com/en-us/sql/t-sql/functions/approx-count-distinc=
+t-transact-sql?view=3Dsql-server-ver16>,
+but we predict that error caused by approximation will have an even larger
+emphasis with the rising popularity of vector indexes.
+
+Accuracy is measured based on Recall. Recall in vector indexing measures
+how many of the ground truth nearest neighbors determined by brute force
+are returned from the approximate indexing algorithm. This is distinct from
+how =E2=80=9CRecall=E2=80=9D is typically used in Information Retrieval to =
+reference how
+many of the relevant documents are returned from the search. Both are
+typically measured with an associated @K parameter.
+
+The interesting question in the full context of a RAG stack is then: *When
+do ANN accuracy errors manifest in IR errors?* For example, we may be able
+to get 1,000 QPS at 80% recall versus 500 QPS at 95% recall, what is the
+impact of this on the search metrics presented above such as Search nDCG or
+an LLM Recall score?
+Concluding thoughts on RAG Metrics
+
+In conclusion, we have presented metrics used to evaluate indexing,
+retrieval, and generation:
+
+   - Generation: Faithfulness and answer relevance, and the evolution from
+   a massive focus on detecting hallucinations and other metrics such as
+   Sensibleness and Specificity Average (SSA).
+   - Retrieval: New opportunities with LLM rated context precision and
+   context recall, as well as an overview of how human labeling has been us=
+ed
+   to measure recall, precision, and nDCG.
+   - Indexing: Measuring recall as the number of ground truth nearest
+   neighbors returned from the vector search algorithm. We believe the key
+   question here is: *When do ANN errors seep into IR errors*?
+
+All components generally have an option to trade-off performance for
+latency or cost. We can get higher quality generations with a more
+expensive language model, we can get higher quality retrieval by filtering
+results with re-rankers, and we can get higher recall indexing by using
+more memory. How to manage these trade-offs to improve performance will
+hopefully become more clear as we continue our investigation into =E2=80=9C=
+RAG:
+Knobs to Tune=E2=80=9D. As a quick reminder, we chose to present metrics fr=
+om a
+top-down view from Generation to Search and Indexing because evaluation
+time is closer to the user experience. We will alternatively present the
+knobs to tune from the bottom-up of Indexing to Retrieval and Generation
+because this is similar to the experience of the RAG application developer.
+RAG Knobs to Tune
+
+Now that we=E2=80=99ve covered the metrics to compare RAG systems, let=E2=
+=80=99s dive
+further into significant decisions that can alter the performance.
+Indexing Knobs
+
+For the sake of designing RAG systems, the most important indexing knob
+looks like vector compression settings. Launched in March 2023, Weaviate
+1.18 introduced Product Quantization (PQ). PQ is a vector compression
+algorithm that groups contiguous segments of a vector, clusters their
+values across the collection, and then reduces the precision with
+centroids. For example, a contiguous segment of 4 32-bit floats requires 16
+bytes to represent, a segment length of 4 with 8 centroids results in only
+needing 1 byte, a 16:1 memory reduction. Recent advances in PQ Rescoring
+help significantly with recall loss from this compression, but is still an
+important consideration with very high levels of compression.
+
+The next step is the routing index used. For corpora of less than 10K
+vectors, RAG applications may be satisfied with a brute force index.
+However, with increased vectors brute force latency becomes far slower than
+Proximity Graph algorithms such as HNSW. As mentioned under RAG Metrics,
+HNSW performance is typically measured as a pareto-optimal point trading
+off queries per second with recall. This is done by varying the ef, or size
+of the search queue, used at inference time. A larger ef results in more
+distance comparisons done during the search, slowing it down significantly
+although producing a more accurate result. The next parameters to look at
+are the ones used in index building, efConstruction, the size of the queue
+when inserting data into the graph, and maxConnections, the number of edges
+per node, which also must be stored with each vector.
+
+Another new direction we are exploring is the impact of distribution shift
+on PQ centroids and the intersection with hybrid clustering and graph index
+algorithms such as DiskANN
+<https://suhasjs.github.io/files/diskann_neurips19.pdf> or IVFOADC+G+P
+<https://openaccess.thecvf.com/content_ECCV_2018/papers/Dmitry_Baranchuk_Re=
+visiting_the_Inverted_ECCV_2018_paper.pdf>.
+Using the Recall metric may be a good enough measure of this to trigger
+re-fitting the centroids, with the question then being: which subset of
+vectors to use in re-fitting. If we use the last 100K that may have caused
+the recall drop, we could risk overfitting to the new distribution, thus we
+likely want some hybrid sampling of the timeline of our data distribution
+when inserted into Weaviate. This topic is heavily related to our
+perspectives on continual optimization of Deep Learning models, discussed
+further in =E2=80=9COrchestrating Tuning=E2=80=9D.
+
+Chunking your data is an important step before inserting your data into
+Weaviate. Chunking takes long documents and converts it into smaller
+sections. This enhances the retrieval since each chunk has an important
+nugget of information and this helps to stay within the LLMs token limit.
+There are quite a few strategies to parse documents. The above visual
+illustrates converting a research paper into chunks based on the heading.
+For example, chunk 1 is the abstract, chunk 2 is the introduction, and so
+on. Additionally, there are methods to combine chunks and have an overlap.
+Including a rolling window takes tokens from the previous chunk and begins
+the next chunk with it. The slight overlap of chunks can improve the search
+since the retriever will understand the previous context/chunk. The
+following image presents a high-level illustration of chunking text.
+
+[image: chunking]
+Retrieval
+
+There are four major knobs to tune in Retrieval: Embedding models, Hybrid
+search weighting, whether to use AutoCut, and Re-ranker models.
+
+Most RAG developers may instantly jump to tuning the embedding model used,
+such as OpenAI, Cohere, Voyager, Jina AI, Sentence Transformers, and many
+others! Developers also need to consider the dimensionality of the models
+and how it affects the PQ compression.
+
+The next key decision is how to weight the aggregation of sparse and dense
+retrieval methods in Hybrid Search. The weighting is based on the
+alpha parameter.
+An alpha of 0 is pure bm25 and an alpha of 1 is pure vector search.
+Therefore, the set alpha is dependent on your data and application.
+
+Another emerging development is the effectiveness of zero-shot re-ranking
+models. Weaviate currently offers 2 re-ranking models from Cohere
+<https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-modul=
+es/reranker-cohere>
+: rerank-english-v2.0 and rerank-multilingual-v2.0. As evidenced from the
+name, these models mostly differ because of the training data used and the
+resulting multilingual capabilities. In the future, we expect further
+optionality ablating the capacity of the model due to inherent trade-offs
+of performance and latency that may make sense for some applications but
+not others. Discovering jointly which capacity re-ranker is needed and how
+many retrieved results to re-rank is another challenge for tuning the knobs
+in retrieval. This is also one of the lowest hanging fruit opportunities
+for fine-tuning custom models in the RAG stack, which we will discuss
+further in =E2=80=9CTuning Orchestration=E2=80=9D.
+
+Another interesting knob to tune is Multi-Index Search. Similar to our
+discussion on chunking, this is a tricky one that may involve structural
+changes to the database. Broadly there is the question of: *When does it
+make sense to use separate collections instead of filters?* Should blogs an=
+d
+ documentation be separated into two collections or jointly housed in a
+Document class with a source property?
+
+[image: multi-index]
+
+Using filters gives us a quick way to test the utility of these labels,
+because we can add more than one tag to each chunk and then ablate how well
+the classifiers use the labels. There are many interesting ideas here such
+as explicitly annotating where the context came from in the input to the
+LLM, such as =E2=80=9CHere are search results from blogs {search_results}. =
+Here are
+search results from documentation {documentation}=E2=80=9D. As LLMs are abl=
+e to
+process longer inputs, we expect that context fusion between multiple data
+sources will become more popular and thus, an associated hyperparameter
+emerges of how many documents to retrieve from each index or filter.
+Generation
+
+When it comes to Generation, the obvious first place to look is the choice
+of LLM. For example, you have options from OpenAI, Cohere, Facebook, and
+many open-source options. It is also helpful that many LLM frameworks like
+LangChain <https://www.langchain.com/>and LlamaIndex
+<https://www.llamaindex.ai/>, and Weaviate=E2=80=99s generate module
+<https://weaviate.io/developers/weaviate/modules/reader-generator-modules/g=
+enerative-openai>
+ offer easy integrations into various models. The model that you choose can
+be dependent on whether you want to keep your data private, the cost,
+resources, and more.
+
+A common LLM specific knob that you can tune is the temperature. The
+temperature setting controls the amount of randomness in the output. A
+temperature of 0 means that the response is more predictable and will vary
+less. A temperature of 1 gives the model the ability to introduce
+randomness and creativity into its responses. Therefore, if you=E2=80=99re =
+running
+the generative model more than once and it has a temperature of 1, the
+responses can vary after each rerun.
+
+Long context models are an emerging direction for choosing the LLM for your
+application. Does adding more search results to the input improve answer
+quality? The Lost in the Middle experiments have tempered expectations here
+a bit. In Lost in the Middle <https://arxiv.org/abs/2307.03172>,
+researchers from Stanford University, UC Berkeley, and Samaya AI presented
+controlled experiments showing that if relevant information was placed in
+the middle of search results, rather than the beginning or end, the
+language model would be unable to integrate it in the generated response.
+Another paper from researchers at Google DeepMind, Toyota, and Purdue
+University showed that =E2=80=9CLarge Language Models Can Be Easily Distrac=
+ted by
+Irrelevant Contex.=E2=80=9D <https://arxiv.org/abs/2302.00093> Although the
+potential is captivating, at the time of this writing, it seems early on
+for Long-Context RAG. Luckily, metrics such as the Ragas score are here to
+help us quickly test the new systems!
+
+Similar to our earlier discussion on recent breakthroughs in LLM
+Evaluation, there are 3 stages of tuning for generation: 1. Prompt tuning,
+2. Few-Shot Examples, and 3. Fine-Tuning. Prompt tuning entails tweaking
+the particular language used such as: =E2=80=9CPlease answer the question b=
+ased on
+the provided search results.=E2=80=9D versus =E2=80=9CPlease answer the que=
+stion.
+IMPORTANT, please follow these instructions closely. Your answer to the
+question must be grounded in the provided search results and nothing
+else!!=E2=80=9D.
+
+As described earlier, Few-Shot Examples describes collecting a few manually
+written examples of question, context, answer pairs to guide the language
+model=E2=80=99s generation. Recent research such as =E2=80=9CIn-Context Vec=
+tors=E2=80=9D
+<https://arxiv.org/abs/2311.06668> are further pointing to the importance
+of guiding latent space like this. We were using GPT-3.5-turbo to generate
+Weaviate queries in the Weaviate Gorilla project and performance
+skyrocketed once we added few-shot examples of natural language to query
+translations.
+
+Lastly, there is increasing interest in fine-tuning LLMs for RAG
+applications. There are a couple of flavors to consider with this. Again
+reminiscent of our discussion of LLM Evaluation, we may want to use a more
+powerful LLM to generate the training data to produce a smaller, more
+economical model owned by you. Another idea could be to provide human
+annotations of response quality to fine-tune an LLM with instruction
+following. If you=E2=80=99re interested in fine-tuning models, check out th=
+is
+tutorial <https://brev.dev/blog/fine-tuning-mistral> from Brev on how to
+use the HuggingFace PEFT library.
+Concluding thoughts on RAG Knobs to Tune
+
+In conclusion, we have presented the main knobs to tune in RAG systems:
+
+   - Indexing: At the highest level, we consider when to just use brute
+   force and when to bring in an ANN index. This is especially interesting
+   when tuning a multi-tenant use case with new versus power users. Within =
+ANN
+   indexing, we have PQ=E2=80=99s hyperparameters of (segments, centroids, =
+and the
+   training limit). HNSW comes with (ef, efConstruction, and maxConnections=
+).
+   - Retrieval: Choosing an embedding model, weighting hybrid search,
+   choosing a re-ranker, and dividing collections into multiple indexes.
+   - Generation: Choosing an LLM and when to make the transition from
+   Prompt Tuning to Few-Shot Examples, or Fine-Tuning.
+
+Armed with an understanding of RAG metrics and what we can tune to improve
+them. Let=E2=80=99s discuss what experiment tracking may look like.
+Tuning Orchestration
+
+Given the recent advances in LLM Evaluation and an overview of some of the
+knobs to tune, one of the most exciting opportunities is to tie all this
+together with experiment tracking frameworks. For example, a simple
+orchestrator that has an intuitive API for a human user to 1. request an
+exhaustive test of say: 5 LLMs, 2 embedding models, and 5 index
+configurations, 2. run the experiments, and 3. return a high quality report
+to the human user. Weights & Biases has paved an incredible experiment
+tracking path for training deep learning models. We expect interest to
+accelerate in this kind of support for RAG experimentation with the knobs
+and metrics we have outlined in this article.
+
+There are a couple of directions we are watching this evolve in. One on
+hand, the Zero-Shot LLMs out there such as GPT-4, Command, Claude, and
+open-source options such as Llama-2 and Mistral perform fairly well when
+they have *oracle context*. Thus, there is a massive opportunity to *focus
+solely on the search half*. This requires finding the needle in the
+haystack of configurations that trade-off ANN error from PQ or HNSW
+trade-offs, with embedding models, hybrid search weightings, and re-ranking
+as described earlier in the article.
+
+Weaviate 1.22 introduces Async Indexing with corresponding node status
+APIs. Our hope with partnerships focusing on RAG evaluation and tuning
+orchestration, is that they can use these APIs to see when an index is
+finished building and then run the test. This is particularly exciting when
+considering interfaces between these node statuses and tuning orchestration
+per tenant where some tenants may get away with brute force, and others
+need to find the right embedding model and HNSW configuration for their
+data.
+
+Further, we may want to speed up testing by parallelizing resource
+allocation. For example, evaluating 4 embedding models at the same time. As
+discussed earlier, another interesting component to this is tuning chunking
+or other symbolic metadata that may come from our data importer. To paint
+the picture with an example, the Weaviate Verba dataset contains 3 folders
+of Weaviate Blogs, Documentation, and Video transcripts. If we want to
+ablate chunk sizes of 100 versus 300, it probably doesn=E2=80=99t make sens=
+e to
+re-invoke the web scraper. We instead may want to have another format,
+whether that be data stored in an S3 bucket or something else, that has the
+associated metadata with it, but provides a more economical way to
+experiment with this.
+
+On the other hand, we have model fine-tuning and continual learning with
+gradients, rather than data inserts or updates. The most common models used
+in RAG are embeddings, re-rankers, and of course, LLMs. Keeping machine
+learning models fresh with new data has been a longstanding focus of
+continual learning frameworks and MLops orchestration that manage the
+re-training and testing and deployment of new models. Starting with
+continual learning of LLMs, one of the biggest selling points of RAG
+systems is the ability to extend the =E2=80=9Ccut-off=E2=80=9D date of the =
+LLM=E2=80=99s knowledge
+base, keeping it up to date with your data. Can the LLM do this directly?
+We don=E2=80=99t believe it is clear what the interaction effect will be be=
+tween
+continued training and keeping information fresh purely with RAG. Some
+research, such as MEMIT, experiments with updating facts such as =E2=80=9CL=
+eBron
+James plays basketball=E2=80=9D to =E2=80=9CLeBron James plays soccer=E2=80=
+=9D purely using causal
+mediation analysis of weight attribution. This is quite an advanced
+technique, and another opportunity could be simply tagging the chunks used
+in training such as =E2=80=9CLeBron James plays basketball=E2=80=9D and re-=
+training with
+retrieval-augmented training data with the new information. This is a major
+area we are keeping an eye on.
+
+As mentioned earlier, we are also thinking of how to interface this kind of
+continual tuning directly into Weaviate with PQ centroids. The PQ centroids
+fit with the first K vectors that enter Weaviate may be impacted by a
+significant shift in the data distribution. The continual training of
+machine learning models has a notorious =E2=80=9Ccatastrophic forgetting=E2=
+=80=9D problem
+where training on the newest batch of data harms performance on earlier
+batches of data. This is also something that we are considering with the
+design of re-fitting PQ centroids.
+From RAG to Agent Evaluation
+
+Throughout the article, we have been concerned with *RAG*, rather than
+*Agent* Evaluation. In our view *RAG* is defined by the flow of Index,
+Retrieve, and Generate, whereas *Agents* have a more open-ended scope. The
+illustration below denotes how we see major components such as Planning,
+Memory, and Tools that jointly add significant power to your system, but
+also make it more difficult to evaluate.
+[image: Agents meme]
+
+A common next step for RAG applications is to add advanced query engines.
+For interested readers new to the concept, please check out Episode 3
+<https://www.youtube.com/watch?v=3DSu-ROQMaiaw> of our LlamaIndex and
+Weaviate series that provides python code examples of how to get started.
+There are many different advanced query engines, such as the Sub-Question
+Query Engine, SQL Router, Self-Correcting Query Engine, and more. We are
+also considering how a promptToQuery API or Search Query Extractor could
+look like in Weaviate=E2=80=99s modules. Each query engine has its own stre=
+ngths in
+the information retrieval process, let=E2=80=99s dive into a couple of them=
+ and how
+we might think about evaluation.
+[image: Sub Question Query Engine]
+
+Multi-hop query engines (otherwise known as sub question query engine
+<https://gpt-index.readthedocs.io/en/latest/examples/query_engine/sub_quest=
+ion_query_engine.html>)
+are great at breaking down complex questions into sub-questions. In the
+visual above, we have the query =E2=80=9CWhat is Ref2Vec in Weaviate?=E2=80=
+=9D To answer
+this question, you need to know what Ref2Vec and Weaviate are separately.
+Therefore, two calls will need to be made to your database to retrieve
+relevant context based on the two questions. The two answers are then
+combined to generate one output. Evaluating the performance of multi-hop
+query engines can be done by observing the sub questions. It is important
+that the LLM is creating relevant sub questions, answering each accurately,
+and combining the two answers to provide a factual and relevant output.
+Additionally, if you=E2=80=99re asking complex questions, it is probably be=
+st to
+utilize the multi-hop query engine.
+
+A multi-hop question is firstly dependent on the accuracy of the
+sub-questions. We can imagine a similar LLM Evaluation used here with the
+prompt: =E2=80=9CGiven the question: {query}. A system decided to break it =
+into the
+sub questions {sub_question_1} and {sub_question_2}. Does this
+decomposition of the question make sense?=E2=80=9D. We then have two separa=
+te RAG
+evaluations for each of the sub questions, and then an evaluation of
+whether the LLM was able to combine the answers from each question to
+answer the original question.
+
+As another example of evolving complexity from RAG to Agents, let=E2=80=99s
+consider Routing Query Engines. The following visual illustrates an agent
+routing a query to either an SQL or Vector Database query. This case is
+quite similar to our discussion of Multi-Index Routing and we can similarly
+evaluate generations with a prompt that explains the needs for SQL and
+Vector Databases and then asks the LLM whether the router made the right
+decision. We can also use the RAGAS Context Relevance score for the results
+of the SQL query.
+[image: SQL Router Query Engine]
+
+Concluding our discussion of =E2=80=9CFrom RAG to Agent Evaluation=E2=80=9D=
+, we believe
+that it is still too early to tell what the common patterns will be for
+agent use. We have intentionally shown the multi-hop query engine and query
+router because these are relatively straightforward to understand. Once we
+add more open-ended planning loops, tool use and the associated evaluation
+of how well the model can format API requests to the tool, and more meta
+internal memory management prompts such as the ideas in MemGPT, it is very
+difficult to provide a general abstraction around how Agents will be
+evaluated.
+Conclusion
+
+Thank you so much for reading our overview of RAG Evaluation! As a quick
+recap, we began by covering new trends in using LLMs for Evaluation,
+providing enormous cost and time savings for iterating on RAG systems. We
+then provided some more background on the traditional metrics used to
+evaluate the RAG stack from Generation, to Search, and then Indexing. For
+builders looking to improve their performance on these metrics, we then
+presented some knobs to tune in Indexing, then Search, and Generation. We
+presented the incoming challenge of experiment tracking for these systems,
+and our view on what differentiates RAG evaluation from Agent evaluation.
+We hope you found this article useful!
+
+--0000000000000749600616fffec2
+Content-Type: text/html; charset="UTF-8"
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><h1 class=3D"gmail-title_f1Hy" style=3D"box-sizing:border-=
+box;font-weight:500;font-size:3rem">An Overview on RAG Evaluation</h1><div =
+id=3D"gmail-__blog-post-container" class=3D"gmail-markdown" style=3D"color:=
+rgb(0,0,0);box-sizing:border-box"><p style=3D"box-sizing:border-box;margin-=
+top:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,=
+104);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quo=
+t;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,=
+&quot;Segoe UI Emoji&quot;">Retrieval Augmented Generation (RAG) is picking=
+ up steam as one of the most popular applications of Large Language Models =
+and Vector Databases. RAG is the process of augmenting inputs to a Large La=
+nguage Model (LLM) with context retrieved from a vector database, like<span=
+ class=3D"gmail-Apple-converted-space">=C2=A0</span><a href=3D"https://weav=
+iate.io/" target=3D"_blank" rel=3D"noopener noreferrer" style=3D"box-sizing=
+:border-box">Weaviate</a>. RAG applications are commonly used for chatbots =
+and question-answering systems.<span class=3D"gmail-Apple-converted-space">=
+=C2=A0</span></p><p style=3D"box-sizing:border-box;margin-top:0px;margin-ri=
+ght:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:=
+-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;=
+,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Em=
+oji&quot;">Like any engineering system, evaluating performance is crucial t=
+o the development of RAG applications. The RAG pipeline is broken down into=
+ three components: 1. Indexing, 2. Retrieval, and 3. Generation. RAG Evalua=
+tion is tricky because of the series of interacting components and the stra=
+in of collecting test data. This article will present an exciting developme=
+nt in using LLMs to produce evaluations and the state of RAG components.</p=
+><p style=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;margin-l=
+eft:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple-system,Bl=
+inkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial=
+,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;"><stro=
+ng style=3D"box-sizing:border-box">TL;DR</strong>: We were inspired to writ=
+e this blog post from our conversation with the creators of<span class=3D"g=
+mail-Apple-converted-space">=C2=A0</span><a href=3D"https://docs.ragas.io/e=
+n/latest/" target=3D"_blank" rel=3D"noopener noreferrer" style=3D"box-sizin=
+g:border-box">Ragas</a>, Jithin James and Shauhul Es on the<span class=3D"g=
+mail-Apple-converted-space">=C2=A0</span><a href=3D"https://www.youtube.com=
+/watch?v=3DC-UQwvO8Koc" target=3D"_blank" rel=3D"noopener noreferrer" style=
+=3D"box-sizing:border-box">77th Weaviate podcast</a>. These new advances in=
+ using LLMs to evaluate RAG systems, pioneered by Ragas and ARES, motivated=
+ us to reflect on previous metrics and take inventory of the RAG knobs to t=
+une. Our investigation led us to think further about what RAG experiment tr=
+acking software may look like. We also further clarify how we distinguish R=
+AG systems from Agent systems and how to evaluate each.</p><p style=3D"box-=
+sizing:border-box;margin-top:0px;margin-right:0px;margin-left:0px;font-size=
+:1.05rem;color:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFont,=
+&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot=
+;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">Our blog post has 5 ma=
+jor sections:</p><ul style=3D"box-sizing:border-box;font-family:-apple-syst=
+em,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,=
+Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;c=
+olor:rgb(28,20,104);font-size:16px"><li style=3D"box-sizing:border-box"><a =
+href=3D"https://weaviate.io/blog/rag-evaluation#llm-evaluations" style=3D"b=
+ox-sizing:border-box"><strong style=3D"box-sizing:border-box">LLM Evaluatio=
+ns</strong></a>: New trends in using LLMs to score RAG performance and scal=
+es of Zero-Shot, Few-Shot, and Fine-Tuned LLM Evaluators.</li><li style=3D"=
+box-sizing:border-box"><a href=3D"https://weaviate.io/blog/rag-evaluation#r=
+ag-metrics" style=3D"box-sizing:border-box"><strong style=3D"box-sizing:bor=
+der-box">RAG Metrics</strong></a>: Common metrics used to evaluate Generati=
+on, Search, and Indexing and how they interact with each other.</li><li sty=
+le=3D"box-sizing:border-box"><a href=3D"https://weaviate.io/blog/rag-evalua=
+tion#rag-knobs-to-tune" style=3D"box-sizing:border-box"><strong style=3D"bo=
+x-sizing:border-box">RAG: Knobs to Tune</strong></a>: What decision makes R=
+AG systems perform significantly different from one another?</li><li style=
+=3D"box-sizing:border-box"><a href=3D"https://weaviate.io/blog/rag-evaluati=
+on#tuning-orchestration" style=3D"box-sizing:border-box"><strong style=3D"b=
+ox-sizing:border-box">Orchestrating Tuning</strong></a>: How do we manage t=
+racking experimental configurations of RAG systems?</li><li style=3D"box-si=
+zing:border-box"><a href=3D"https://weaviate.io/blog/rag-evaluation#from-ra=
+g-to-agent-evaluation" style=3D"box-sizing:border-box"><strong style=3D"box=
+-sizing:border-box">From RAG to Agent Evaluation</strong></a>: We define RA=
+G as a three step procss of index, retrieve, and generate. This section des=
+cribes when a RAG system becomes an Agent system and how Agent Evaluation d=
+iffers.</li></ul><h2 class=3D"gmail-anchor gmail-anchorWithStickyNavbar_LWe=
+7" id=3D"gmail-llm-evaluations" style=3D"box-sizing:border-box;font-family:=
+-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;=
+,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Em=
+oji&quot;;font-weight:500;padding-bottom:0.25em;padding-top:0.7em">LLM Eval=
+uations</h2><p style=3D"box-sizing:border-box;margin-top:0px;margin-right:0=
+px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-appl=
+e-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helv=
+etica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&q=
+uot;">Let=E2=80=99s start with the newest and most exciting component of al=
+l this, LLM evaluations! The history of machine learning has been heavily d=
+riven by the manual labor of labeling data, such as whether a Yelp review i=
+s positive or negative, or whether an article about nutritional supplements=
+ is related to the query, =E2=80=9CWho is the head coach of the Boston Celt=
+ics?=E2=80=9D. LLMs are becoming highly effective at data annotation with l=
+ess manual effort. This is the key<span class=3D"gmail-Apple-converted-spac=
+e">=C2=A0</span><strong style=3D"box-sizing:border-box">=E2=80=9Cwhat=E2=80=
+=99s new=E2=80=9D</strong>development accelerating the development of RAG a=
+pplications.</p><p style=3D"box-sizing:border-box;margin-top:0px;margin-rig=
+ht:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-=
+apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,=
+Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emo=
+ji&quot;">The most common technique pioneered by frameworks, like<span clas=
+s=3D"gmail-Apple-converted-space">=C2=A0</span><a href=3D"https://docs.raga=
+s.io/en/latest/" target=3D"_blank" rel=3D"noopener noreferrer" style=3D"box=
+-sizing:border-box">Ragas</a>, are Zero-Shot LLM Evaluations. Zero-Shot LLM=
+ Evaluation describes prompting a Large Language Model with a prompt templa=
+te such as: =E2=80=9CPlease provide a rating on a scale of 1 to 10 of wheth=
+er these search results are relevant to the query. The query is {query}, th=
+e search results are {search_results}=E2=80=9D. The visualization below sho=
+ws how an LLM can be used to evaluate the performance of RAG systems.</p><p=
+ style=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;margin-left=
+:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple-system,Blink=
+MacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sa=
+ns-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;"><img alt=
+=3D"RAG-evaluation" src=3D"https://weaviate.io/assets/images/rag-eval-d0cb4=
+1272a9f095b25b48ee8dbff51c9.png" width=3D"1999" height=3D"656" class=3D"gma=
+il-img_ev3q" style=3D"box-sizing: border-box; max-width: 100%; height: auto=
+;"></p><p style=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;ma=
+rgin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple-sys=
+tem,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica=
+,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;"=
+>There are three major opportunities for tuning Zero-Shot LLM Evaluation: 1=
+. the design of the metrics such as precision, recall, or nDCG, 2. the exac=
+t language of these prompts, and 3. the language model used for evaluation,=
+ such as GPT-4, Coral, Llama-2, Mistral, and many others. At the time of wr=
+iting this blog post, people are mainly curious on the cost of evaluation u=
+sing an LLM. Let=E2=80=99s use GPT-4 as an example to see the cost of evalu=
+ating 10 search results, assuming 500 tokens per result and 100 tokens for =
+the query and instructions, totaling roughly 6,000 tokens per LLM call to m=
+ake the napkin math easier. Then assuming a rate of $0.005 per 1K tokens, t=
+his would cost $3 to evaluate 100 queries.</p><p style=3D"box-sizing:border=
+-box;margin-top:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;colo=
+r:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe U=
+I&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color =
+Emoji&quot;,&quot;Segoe UI Emoji&quot;">The adoption of Zero-Shot LLM Evalu=
+ation from frameworks like Ragas is widely spreading. This has led to peopl=
+e questioning whether a Few-Shot LLM Evaluation is necessary. Due to its =
+=E2=80=9Cgood enough=E2=80=9D status on the tipping scale, Zero-Shot LLM Ev=
+aluation may be all that is needed to be a north star for RAG system tuning=
+. Shown below, the RAGAS score is made up of 4 prompts for Zero-Shot LLMs t=
+hat evaluate the 2 metrics for generation,<span class=3D"gmail-Apple-conver=
+ted-space">=C2=A0</span><strong style=3D"box-sizing:border-box">Faithfulnes=
+s</strong><span class=3D"gmail-Apple-converted-space">=C2=A0</span>and<span=
+ class=3D"gmail-Apple-converted-space">=C2=A0</span><strong style=3D"box-si=
+zing:border-box">Answer Relevancy</strong>, as well as 2 metrics for retrie=
+val,<span class=3D"gmail-Apple-converted-space">=C2=A0</span><strong style=
+=3D"box-sizing:border-box">Context Precision</strong><span class=3D"gmail-A=
+pple-converted-space">=C2=A0</span>and<span class=3D"gmail-Apple-converted-=
+space">=C2=A0</span><strong style=3D"box-sizing:border-box">Context Recall<=
+/strong>.</p><p style=3D"box-sizing:border-box;margin-top:0px;margin-right:=
+0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-app=
+le-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Hel=
+vetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&=
+quot;"><img alt=3D"Ragas-score" src=3D"https://weaviate.io/assets/images/ra=
+gas-score-d4c1ae76bd43254bf1ed72a767c4bb94.png" width=3D"1000" height=3D"56=
+3" class=3D"gmail-img_ev3q" style=3D"box-sizing: border-box; max-width: 100=
+%; height: auto;"><a href=3D"https://docs.ragas.io/en/latest/concepts/metri=
+cs/index.html" target=3D"_blank" rel=3D"noopener noreferrer" style=3D"box-s=
+izing:border-box">Source</a></p><p style=3D"box-sizing:border-box;margin-to=
+p:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,10=
+4);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;=
+Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&q=
+uot;Segoe UI Emoji&quot;">The transition from Zero-Shot to Few-Shot LLM Eva=
+luation is quite straightforward. Instead of using just an instruction temp=
+late, we add a few labeled examples of the relevancy of linked search resul=
+ts to a query. This is also known as In-Context Learning, and the discovery=
+ of this technique was one of the key breakthroughs in GPT-3.</p><p style=
+=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;margin-left:0px;f=
+ont-size:1.05rem;color:rgb(28,20,104);font-family:-apple-system,BlinkMacSys=
+temFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-ser=
+if,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">For example, a=
+dding 5 examples of human relevance ratings, we add 30,000 tokens to the pr=
+ompt. Assuming the same cost as above, we 5x our cost to evaluate 100 queri=
+es from $3 to $15. Note this is a toy example and not based on the real pri=
+cing models of LLMs. A key consideration here is that adding few-shot examp=
+les may require longer context models, which are currently priced higher th=
+an smaller input LLMs.</p><p style=3D"box-sizing:border-box;margin-top:0px;=
+margin-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);fon=
+t-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto S=
+ans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Se=
+goe UI Emoji&quot;">This is already a very attractive price for producing a=
+n LLM Evaluation with Zero-Shot or Few-Shot inference, but further research=
+ suggests that the price of LLM evaluation can be further reduced with Know=
+ledge Distillation training algorithms. This describes taking an LLM, using=
+ it to generate training data for the task of evaluation and then fine-tuni=
+ng it into a smaller model.<span class=3D"gmail-Apple-converted-space">=C2=
+=A0</span></p><p style=3D"box-sizing:border-box;margin-top:0px;margin-right=
+:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-ap=
+ple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,He=
+lvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji=
+&quot;">In<span class=3D"gmail-Apple-converted-space">=C2=A0</span><a href=
+=3D"https://arxiv.org/abs/2311.09476" target=3D"_blank" rel=3D"noopener nor=
+eferrer" style=3D"box-sizing:border-box">ARES</a>: An Automated Evaluation =
+Framework for Retrieval-Augmented Generation Systems, Saad-Falcon et al. fo=
+und that training your own LLM evaluator can have a better performance than=
+ zero-shot prompting. To begin, =E2=80=9CARES requires three inputs for the=
+ pipeline: a set of passages from the target corpus, a human preference val=
+idation set of 150 annotated datapoints or more, and five few-shot examples=
+ of in-domain queries.=E2=80=9D ARES then uses the few-shot examples of que=
+ries to generate a large dataset of synthetic queries. These queries are th=
+en filtered using the roundtrip consistency principle: Can we retrieve the =
+document that produced the synthetic query when searching with the syntheti=
+c query? In addition to the positive chunk that was used to create the synt=
+hetic query, ARES adds weak negatives by randomly sampling other chunks fro=
+m other documents in the corpus and strong negatives by either looking for =
+a chunk in the same document as the one used to produce the query, or if un=
+available, using one of the top-10 results from a BM25 query. Now armed wit=
+h queries, answers, gold documents, and negatives, ARES fine-tunes lightwei=
+ght classifiers for<span class=3D"gmail-Apple-converted-space">=C2=A0</span=
+><strong style=3D"box-sizing:border-box">context relevance</strong>,<span c=
+lass=3D"gmail-Apple-converted-space">=C2=A0</span><strong style=3D"box-sizi=
+ng:border-box">answer faithfulness</strong>, and<span class=3D"gmail-Apple-=
+converted-space">=C2=A0</span><strong style=3D"box-sizing:border-box">answe=
+r relevance</strong>.<span class=3D"gmail-Apple-converted-space">=C2=A0</sp=
+an></p><p style=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;ma=
+rgin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple-sys=
+tem,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica=
+,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;"=
+>The authors experiment with fine-tuning<span class=3D"gmail-Apple-converte=
+d-space">=C2=A0</span><a href=3D"https://huggingface.co/microsoft/deberta-v=
+3-large" target=3D"_blank" rel=3D"noopener noreferrer" style=3D"box-sizing:=
+border-box">DeBERTa-v3-large</a>, which contains a more economical 437 mill=
+ion parameters, with each classifier head sharing the base language model, =
+adding 3 total classification heads. The ARES system is then evaluated by d=
+ividing the synthetic data into a train-test split and comparing the fine-t=
+uned judges with zero-shot and few-shot GPT-3.5-turbo-16k judges, finding t=
+hat the fine-tuned models perform significantly better. For further details=
+, such as a novel use of confidence intervals with prediction powered infer=
+ence (PPI) and more experimental details, please see the paper from<span cl=
+ass=3D"gmail-Apple-converted-space">=C2=A0</span><a href=3D"https://arxiv.o=
+rg/abs/2311.09476" target=3D"_blank" rel=3D"noopener noreferrer" style=3D"b=
+ox-sizing:border-box">Saad-Falcon et al</a>.<span class=3D"gmail-Apple-conv=
+erted-space">=C2=A0</span></p><p style=3D"box-sizing:border-box;margin-top:=
+0px;margin-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104)=
+;font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;No=
+to Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quo=
+t;Segoe UI Emoji&quot;">To better understand the potential impact of LLMs f=
+or evaluation, we will continue with a tour of the existing methods for ben=
+chmarking RAG systems and how they are particularly changed with LLM Evalua=
+tion.</p><h2 class=3D"gmail-anchor gmail-anchorWithStickyNavbar_LWe7" id=3D=
+"gmail-rag-metrics" style=3D"box-sizing:border-box;font-family:-apple-syste=
+m,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,A=
+rial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;fo=
+nt-weight:500;padding-bottom:0.25em;padding-top:0.7em">RAG Metrics</h2><p s=
+tyle=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;margin-left:0=
+px;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple-system,BlinkMa=
+cSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans=
+-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">We are pre=
+senting RAG metrics from a top-down view from generation, to retrieval, and=
+ then indexing. We then present the RAG knobs to tune from a bottom-up pers=
+pective of building an index, tuning how to retrieve, and then options for =
+generation.</p><p style=3D"box-sizing:border-box;margin-top:0px;margin-righ=
+t:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-a=
+pple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,H=
+elvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoj=
+i&quot;">Another reason to present RAG Metrics from a top-down view is beca=
+use errors from Indexing will bubble up to Search and then Generation, but =
+errors in Generation (as we have defined the stack) have no impact on error=
+s in Indexing. In the current state of RAG evaluation, it is uncommon to ev=
+aluate the RAG stack end-to-end, rather<span class=3D"gmail-Apple-converted=
+-space">=C2=A0</span><strong style=3D"box-sizing:border-box">oracle context=
+</strong>, or<span class=3D"gmail-Apple-converted-space">=C2=A0</span><stro=
+ng style=3D"box-sizing:border-box">controlled distractors</strong><span cla=
+ss=3D"gmail-Apple-converted-space">=C2=A0</span>(such as the Lost in the Mi=
+ddle experiments) are assumed when determining faithfulness and answer rele=
+vancy in generation. Similarly, embeddings are typically evaluated with bru=
+te force indexing that doesn=E2=80=99t account for approximate nearest neig=
+hbor errors. Approximate nearest neighbor errors are typically measured by =
+finding pareto-optimal points that trade off accuracy with queries per seco=
+nd and recall, ANN recall being the ground truth nearest neighbors to a que=
+ry, rather than documents labeled as =E2=80=9Crelevant=E2=80=9D to the quer=
+y.</p><h3 class=3D"gmail-anchor gmail-anchorWithStickyNavbar_LWe7" id=3D"gm=
+ail-generation-metrics" style=3D"box-sizing:border-box;font-family:-apple-s=
+ystem,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helveti=
+ca,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot=
+;;font-weight:500;padding-bottom:0.15em;padding-top:0.5em">Generation Metri=
+cs</h3><p style=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;ma=
+rgin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple-sys=
+tem,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica=
+,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;"=
+>The overall goal of a RAG application is to have a helpful output that use=
+s the retrieved context for support. The evaluation must consider that the =
+output has used the context without directly taking it from the source, avo=
+iding redundant information, as well as preventing incomplete answers. To s=
+core the output, there needs to be a metric that covers each criteria.<span=
+ class=3D"gmail-Apple-converted-space">=C2=A0</span></p><p style=3D"box-siz=
+ing:border-box;margin-top:0px;margin-right:0px;margin-left:0px;font-size:1.=
+05rem;color:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFont,&qu=
+ot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Ap=
+ple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;"><a href=3D"https://docs.r=
+agas.io/en/latest/concepts/metrics/index.html#ragas-metrics" target=3D"_bla=
+nk" rel=3D"noopener noreferrer" style=3D"box-sizing:border-box">Ragas</a><s=
+pan class=3D"gmail-Apple-converted-space">=C2=A0</span>introduced two score=
+s to measure the performance of an LLM output: faithfulness and answer rele=
+vancy.<span class=3D"gmail-Apple-converted-space">=C2=A0</span><a href=3D"h=
+ttps://docs.ragas.io/en/latest/concepts/metrics/faithfulness.html" target=
+=3D"_blank" rel=3D"noopener noreferrer" style=3D"box-sizing:border-box">Fai=
+thfulness</a><span class=3D"gmail-Apple-converted-space">=C2=A0</span>obser=
+ves how factually correct the answer is based on the retrieved context.<spa=
+n class=3D"gmail-Apple-converted-space">=C2=A0</span><a href=3D"https://doc=
+s.ragas.io/en/latest/concepts/metrics/answer_relevance.html" target=3D"_bla=
+nk" rel=3D"noopener noreferrer" style=3D"box-sizing:border-box">Answer rele=
+vance</a><span class=3D"gmail-Apple-converted-space">=C2=A0</span>determine=
+s how relevant the answer is given the question. An answer can have a high =
+faithfulness score, but a low answer relevance score. For example, a faithf=
+ul response is one that copies the context verbatim, however, that would re=
+sult in a low answer relevance. The answer relevance score is penalized whe=
+n an answer lacks completeness or has duplicate information.<span class=3D"=
+gmail-Apple-converted-space">=C2=A0</span></p><p style=3D"box-sizing:border=
+-box;margin-top:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;colo=
+r:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe U=
+I&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color =
+Emoji&quot;,&quot;Segoe UI Emoji&quot;">In 2020, Google released<span class=
+=3D"gmail-Apple-converted-space">=C2=A0</span><a href=3D"https://blog.resea=
+rch.google/2020/01/towards-conversational-agent-that-can.html" target=3D"_b=
+lank" rel=3D"noopener noreferrer" style=3D"box-sizing:border-box">Meena</a>=
+, a conversational agent. The goal of Meena was to show that it can have<sp=
+an class=3D"gmail-Apple-converted-space">=C2=A0</span><strong style=3D"box-=
+sizing:border-box">sensible</strong><span class=3D"gmail-Apple-converted-sp=
+ace">=C2=A0</span>and<span class=3D"gmail-Apple-converted-space">=C2=A0</sp=
+an><strong style=3D"box-sizing:border-box">specific</strong><span class=3D"=
+gmail-Apple-converted-space">=C2=A0</span>conversations. To measure the per=
+formance of the open-domain chatbots, they introduced the Sensibleness and =
+Specificity Average (SSA) evaluation metrics. The bot=E2=80=99s response wa=
+s measured by its sensibleness, meaning it needed to make sense in context =
+and be specific (specificity average). This ensures the output is comprehen=
+sive without being too vague. Back in 2020, this required humans to have co=
+nversations with the chatbot and manually assign these ratings.</p><p style=
+=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;margin-left:0px;f=
+ont-size:1.05rem;color:rgb(28,20,104);font-family:-apple-system,BlinkMacSys=
+temFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-ser=
+if,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">While it is go=
+od to avoid vague responses, it is equally important to avoid the LLM from<=
+span class=3D"gmail-Apple-converted-space">=C2=A0</span><strong style=3D"bo=
+x-sizing:border-box">hallucinating</strong>. Hallucination refers to the LL=
+M generating a response that is not grounded in actual facts or the provide=
+d context.<span class=3D"gmail-Apple-converted-space">=C2=A0</span><a href=
+=3D"https://docs.llamaindex.ai/en/latest/examples/evaluation/faithfulness_e=
+val.html" target=3D"_blank" rel=3D"noopener noreferrer" style=3D"box-sizing=
+:border-box">LlamaIndex</a>measures this with a<span class=3D"gmail-Apple-c=
+onverted-space">=C2=A0</span><code style=3D"box-sizing:border-box;vertical-=
+align:middle;border:0.1rem solid rgba(0,0,0,0.1)">FaithfulnessEvaluator</co=
+de><span class=3D"gmail-Apple-converted-space">=C2=A0</span>metric. The sco=
+re is based on whether the response matches the retrieved context.<span cla=
+ss=3D"gmail-Apple-converted-space">=C2=A0</span></p><p style=3D"box-sizing:=
+border-box;margin-top:0px;margin-right:0px;margin-left:0px;font-size:1.05re=
+m;color:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFont,&quot;S=
+egoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple =
+Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">Determining whether a generat=
+ed response is good or bad is dependent on a few metrics. You can have answ=
+ers that are factual, but not relevant to the given query. Additionally, an=
+swers can be vague and miss out key contextual information to support the r=
+esponse. We will now go one step back through the pipeline and cover retrie=
+val metrics.</p><h3 class=3D"gmail-anchor gmail-anchorWithStickyNavbar_LWe7=
+" id=3D"gmail-retrieval-metrics" style=3D"box-sizing:border-box;font-family=
+:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot=
+;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI E=
+moji&quot;;font-weight:500;padding-bottom:0.15em;padding-top:0.5em">Retriev=
+al Metrics</h3><p style=3D"box-sizing:border-box;margin-top:0px;margin-righ=
+t:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-a=
+pple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,H=
+elvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoj=
+i&quot;">The next layer in the evaluation stack is information retrieval. T=
+he history of evaluating retrieval has required humans to annotate which do=
+cuments are relevant for a query. So thus, to create 1 query annotation, we=
+ may need to annotate the relevance of 100 documents. This is already an im=
+mensely difficult task for general search queries, but becomes additionally=
+ challenging when building search engines for specific domains such as lega=
+l contracts, medical patient history, to give a few examples.</p><p style=
+=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;margin-left:0px;f=
+ont-size:1.05rem;color:rgb(28,20,104);font-family:-apple-system,BlinkMacSys=
+temFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-ser=
+if,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">To lighten the=
+ costs of labeling, heuristics are often used for search relevancy. The mos=
+t common of which being the click log where: given a query, the title that =
+was clicked on is likely relevant and the others are not. This is also know=
+n as weak supervision in machine learning.</p><p style=3D"box-sizing:border=
+-box;margin-top:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;colo=
+r:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe U=
+I&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color =
+Emoji&quot;,&quot;Segoe UI Emoji&quot;">Once a dataset has been prepared, t=
+here are three common metrics used for evaluation:<span class=3D"gmail-Appl=
+e-converted-space">=C2=A0</span><strong style=3D"box-sizing:border-box">nDC=
+G</strong>,<span class=3D"gmail-Apple-converted-space">=C2=A0</span><strong=
+ style=3D"box-sizing:border-box">Recall</strong>, and<span class=3D"gmail-A=
+pple-converted-space">=C2=A0</span><strong style=3D"box-sizing:border-box">=
+Precision</strong>. NDCG (Normalized Discounted Cumulative Gain) measures r=
+anking with multiple relevance labels. For example, a document about Vitami=
+n B12 may not be the most relevant result to a query about Vitamin D, but i=
+t is more relevant than a document about the Boston Celtics. Due to the add=
+itional difficulty of relative ranking, binary relevance labels are often u=
+sed (1 for relevant, 0 for irrelevant). Recall measures how many of the pos=
+itives were captured in the search results. Precision then measures how man=
+y of the search results are labeled as relevant.</p><p style=3D"box-sizing:=
+border-box;margin-top:0px;margin-right:0px;margin-left:0px;font-size:1.05re=
+m;color:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFont,&quot;S=
+egoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple =
+Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">LLMs can thus calculate preci=
+sion with the prompt: =E2=80=9CHow many of the following search results are=
+ relevant to the query {query}? {search_results}=E2=80=9D. A proxy measure =
+for recall can also be achieved with an LLM prompt: =E2=80=9CDo these searc=
+h results contain all the needed information to answer the query {query}? {=
+search_results}=E2=80=9D. We similarly encourage readers to check out some =
+of the prompts available in Ragas<span class=3D"gmail-Apple-converted-space=
+">=C2=A0</span><a href=3D"https://github.com/explodinggradients/ragas/tree/=
+main/src/ragas/metrics" target=3D"_blank" rel=3D"noopener noreferrer" style=
+=3D"box-sizing:border-box">here</a>.</p><p style=3D"box-sizing:border-box;m=
+argin-top:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(=
+28,20,104);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot=
+;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&=
+quot;,&quot;Segoe UI Emoji&quot;">Another metric worth exploring is LLM Win=
+s, where an LLM is prompted with: =E2=80=9CBased on the query {query}, whic=
+h set of search results are more relevant? Set A {Set_A} or Set B {Set_B}. =
+VERY IMPORTANT! Please restrict your output to =E2=80=9CSet A=E2=80=9D or =
+=E2=80=9CSet B=E2=80=9D.</p><p style=3D"box-sizing:border-box;margin-top:0p=
+x;margin-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);f=
+ont-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto=
+ Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;=
+Segoe UI Emoji&quot;">Let=E2=80=99s now dive one layer deeper to understand=
+ how vector indexes are compared with one another.</p><h3 class=3D"gmail-an=
+chor gmail-anchorWithStickyNavbar_LWe7" id=3D"gmail-indexing-metrics" style=
+=3D"box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,&quo=
+t;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;App=
+le Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;font-weight:500;padding-bot=
+tom:0.15em;padding-top:0.5em">Indexing Metrics</h3><p style=3D"box-sizing:b=
+order-box;margin-top:0px;margin-right:0px;margin-left:0px;font-size:1.05rem=
+;color:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFont,&quot;Se=
+goe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple C=
+olor Emoji&quot;,&quot;Segoe UI Emoji&quot;">Tenured Weaviate users are lik=
+ely familiar with the<span class=3D"gmail-Apple-converted-space">=C2=A0</sp=
+an><a href=3D"https://github.com/erikbern/ann-benchmarks/tree/main" target=
+=3D"_blank" rel=3D"noopener noreferrer" style=3D"box-sizing:border-box">ANN=
+ Benchmarks</a>, which for example inspired the development of the<span cla=
+ss=3D"gmail-Apple-converted-space">=C2=A0</span><a href=3D"https://weaviate=
+.io/blog/weaviate-1-19-release#grpc-api-support-experimental" target=3D"_bl=
+ank" rel=3D"noopener noreferrer" style=3D"box-sizing:border-box">gRPC API i=
+n Weaviate 1.19</a>. The ANN Benchmarks measure Queries Per Second versus R=
+ecall, with additional nuances on single-threaded restrictions and so on. D=
+atabases are typically evaluated based on latency and storage cost, stochas=
+tic vector indexes place additional emphasis on accuracy measurement. There=
+ is some analog with approximation in<span class=3D"gmail-Apple-converted-s=
+pace">=C2=A0</span><a href=3D"https://learn.microsoft.com/en-us/sql/t-sql/f=
+unctions/approx-count-distinct-transact-sql?view=3Dsql-server-ver16" target=
+=3D"_blank" rel=3D"noopener noreferrer" style=3D"box-sizing:border-box">SQL=
+ select statements</a>, but we predict that error caused by approximation w=
+ill have an even larger emphasis with the rising popularity of vector index=
+es.</p><p style=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;ma=
+rgin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple-sys=
+tem,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica=
+,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;"=
+>Accuracy is measured based on Recall. Recall in vector indexing measures h=
+ow many of the ground truth nearest neighbors determined by brute force are=
+ returned from the approximate indexing algorithm. This is distinct from ho=
+w =E2=80=9CRecall=E2=80=9D is typically used in Information Retrieval to re=
+ference how many of the relevant documents are returned from the search. Bo=
+th are typically measured with an associated @K parameter.</p><p style=3D"b=
+ox-sizing:border-box;margin-top:0px;margin-right:0px;margin-left:0px;font-s=
+ize:1.05rem;color:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFo=
+nt,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&q=
+uot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">The interesting que=
+stion in the full context of a RAG stack is then:<span class=3D"gmail-Apple=
+-converted-space">=C2=A0</span><strong style=3D"box-sizing:border-box">When=
+ do ANN accuracy errors manifest in IR errors?</strong><span class=3D"gmail=
+-Apple-converted-space">=C2=A0</span>For example, we may be able to get 1,0=
+00 QPS at 80% recall versus 500 QPS at 95% recall, what is the impact of th=
+is on the search metrics presented above such as Search nDCG or an LLM Reca=
+ll score?</p><h3 class=3D"gmail-anchor gmail-anchorWithStickyNavbar_LWe7" i=
+d=3D"gmail-concluding-thoughts-on-rag-metrics" style=3D"box-sizing:border-b=
+ox;font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;=
+Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&q=
+uot;Segoe UI Emoji&quot;;font-weight:500;padding-bottom:0.15em;padding-top:=
+0.5em">Concluding thoughts on RAG Metrics</h3><p style=3D"box-sizing:border=
+-box;margin-top:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;colo=
+r:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe U=
+I&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color =
+Emoji&quot;,&quot;Segoe UI Emoji&quot;">In conclusion, we have presented me=
+trics used to evaluate indexing, retrieval, and generation:</p><ul style=3D=
+"box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,&quot;S=
+egoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple =
+Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;color:rgb(28,20,104);font-size=
+:16px"><li style=3D"box-sizing:border-box">Generation: Faithfulness and ans=
+wer relevance, and the evolution from a massive focus on detecting hallucin=
+ations and other metrics such as Sensibleness and Specificity Average (SSA)=
+.</li><li style=3D"box-sizing:border-box">Retrieval: New opportunities with=
+ LLM rated context precision and context recall, as well as an overview of =
+how human labeling has been used to measure recall, precision, and nDCG.</l=
+i><li style=3D"box-sizing:border-box">Indexing: Measuring recall as the num=
+ber of ground truth nearest neighbors returned from the vector search algor=
+ithm. We believe the key question here is:<span class=3D"gmail-Apple-conver=
+ted-space">=C2=A0</span><em style=3D"box-sizing:border-box">When do ANN err=
+ors seep into IR errors</em>?</li></ul><p style=3D"box-sizing:border-box;ma=
+rgin-top:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(2=
+8,20,104);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;=
+,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&q=
+uot;,&quot;Segoe UI Emoji&quot;">All components generally have an option to=
+ trade-off performance for latency or cost. We can get higher quality gener=
+ations with a more expensive language model, we can get higher quality retr=
+ieval by filtering results with re-rankers, and we can get higher recall in=
+dexing by using more memory. How to manage these trade-offs to improve perf=
+ormance will hopefully become more clear as we continue our investigation i=
+nto =E2=80=9CRAG: Knobs to Tune=E2=80=9D. As a quick reminder, we chose to =
+present metrics from a top-down view from Generation to Search and Indexing=
+ because evaluation time is closer to the user experience. We will alternat=
+ively present the knobs to tune from the bottom-up of Indexing to Retrieval=
+ and Generation because this is similar to the experience of the RAG applic=
+ation developer.</p><h2 class=3D"gmail-anchor gmail-anchorWithStickyNavbar_=
+LWe7" id=3D"gmail-rag-knobs-to-tune" style=3D"box-sizing:border-box;font-fa=
+mily:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&=
+quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe =
+UI Emoji&quot;;font-weight:500;padding-bottom:0.25em;padding-top:0.7em">RAG=
+ Knobs to Tune</h2><p style=3D"box-sizing:border-box;margin-top:0px;margin-=
+right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-famil=
+y:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quo=
+t;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI =
+Emoji&quot;">Now that we=E2=80=99ve covered the metrics to compare RAG syst=
+ems, let=E2=80=99s dive further into significant decisions that can alter t=
+he performance.</p><h3 class=3D"gmail-anchor gmail-anchorWithStickyNavbar_L=
+We7" id=3D"gmail-indexing-knobs" style=3D"box-sizing:border-box;font-family=
+:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot=
+;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI E=
+moji&quot;;font-weight:500;padding-bottom:0.15em;padding-top:0.5em">Indexin=
+g Knobs</h3><p style=3D"box-sizing:border-box;margin-top:0px;margin-right:0=
+px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-appl=
+e-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helv=
+etica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&q=
+uot;">For the sake of designing RAG systems, the most important indexing kn=
+ob looks like vector compression settings. Launched in March 2023, Weaviate=
+ 1.18 introduced Product Quantization (PQ). PQ is a vector compression algo=
+rithm that groups contiguous segments of a vector, clusters their values ac=
+ross the collection, and then reduces the precision with centroids. For exa=
+mple, a contiguous segment of 4 32-bit floats requires 16 bytes to represen=
+t, a segment length of 4 with 8 centroids results in only needing 1 byte, a=
+ 16:1 memory reduction. Recent advances in PQ Rescoring help significantly =
+with recall loss from this compression, but is still an important considera=
+tion with very high levels of compression.</p><p style=3D"box-sizing:border=
+-box;margin-top:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;colo=
+r:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe U=
+I&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color =
+Emoji&quot;,&quot;Segoe UI Emoji&quot;">The next step is the routing index =
+used. For corpora of less than 10K vectors, RAG applications may be satisfi=
+ed with a brute force index. However, with increased vectors brute force la=
+tency becomes far slower than Proximity Graph algorithms such as HNSW. As m=
+entioned under RAG Metrics, HNSW performance is typically measured as a par=
+eto-optimal point trading off queries per second with recall. This is done =
+by varying the ef, or size of the search queue, used at inference time. A l=
+arger ef results in more distance comparisons done during the search, slowi=
+ng it down significantly although producing a more accurate result. The nex=
+t parameters to look at are the ones used in index building, efConstruction=
+, the size of the queue when inserting data into the graph, and maxConnecti=
+ons, the number of edges per node, which also must be stored with each vect=
+or.</p><p style=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;ma=
+rgin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple-sys=
+tem,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica=
+,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;"=
+>Another new direction we are exploring is the impact of distribution shift=
+ on PQ centroids and the intersection with hybrid clustering and graph inde=
+x algorithms such as<span class=3D"gmail-Apple-converted-space">=C2=A0</spa=
+n><a href=3D"https://suhasjs.github.io/files/diskann_neurips19.pdf" target=
+=3D"_blank" rel=3D"noopener noreferrer" style=3D"box-sizing:border-box">Dis=
+kANN</a><span class=3D"gmail-Apple-converted-space">=C2=A0</span>or<span cl=
+ass=3D"gmail-Apple-converted-space">=C2=A0</span><a href=3D"https://openacc=
+ess.thecvf.com/content_ECCV_2018/papers/Dmitry_Baranchuk_Revisiting_the_Inv=
+erted_ECCV_2018_paper.pdf" target=3D"_blank" rel=3D"noopener noreferrer" st=
+yle=3D"box-sizing:border-box">IVFOADC+G+P</a>. Using the Recall metric may =
+be a good enough measure of this to trigger re-fitting the centroids, with =
+the question then being: which subset of vectors to use in re-fitting. If w=
+e use the last 100K that may have caused the recall drop, we could risk ove=
+rfitting to the new distribution, thus we likely want some hybrid sampling =
+of the timeline of our data distribution when inserted into Weaviate. This =
+topic is heavily related to our perspectives on continual optimization of D=
+eep Learning models, discussed further in =E2=80=9COrchestrating Tuning=E2=
+=80=9D.</p><p style=3D"box-sizing:border-box;margin-top:0px;margin-right:0p=
+x;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple=
+-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helve=
+tica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&qu=
+ot;">Chunking your data is an important step before inserting your data int=
+o Weaviate. Chunking takes long documents and converts it into smaller sect=
+ions. This enhances the retrieval since each chunk has an important nugget =
+of information and this helps to stay within the LLMs token limit. There ar=
+e quite a few strategies to parse documents. The above visual illustrates c=
+onverting a research paper into chunks based on the heading. For example, c=
+hunk 1 is the abstract, chunk 2 is the introduction, and so on. Additionall=
+y, there are methods to combine chunks and have an overlap. Including a rol=
+ling window takes tokens from the previous chunk and begins the next chunk =
+with it. The slight overlap of chunks can improve the search since the retr=
+iever will understand the previous context/chunk. The following image prese=
+nts a high-level illustration of chunking text.</p><p style=3D"box-sizing:b=
+order-box;margin-top:0px;margin-right:0px;margin-left:0px;font-size:1.05rem=
+;color:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFont,&quot;Se=
+goe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple C=
+olor Emoji&quot;,&quot;Segoe UI Emoji&quot;"><img alt=3D"chunking" src=3D"h=
+ttps://weaviate.io/assets/images/chunk-8ea27c16ee8d77461c25dcb02345b8fc.png=
+" width=3D"1999" height=3D"1125" class=3D"gmail-img_ev3q" style=3D"box-sizi=
+ng: border-box; max-width: 100%; height: auto;"></p><h3 class=3D"gmail-anch=
+or gmail-anchorWithStickyNavbar_LWe7" id=3D"gmail-retrieval" style=3D"box-s=
+izing:border-box;font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe U=
+I&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color =
+Emoji&quot;,&quot;Segoe UI Emoji&quot;;font-weight:500;padding-bottom:0.15e=
+m;padding-top:0.5em">Retrieval</h3><p style=3D"box-sizing:border-box;margin=
+-top:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20=
+,104);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&qu=
+ot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;=
+,&quot;Segoe UI Emoji&quot;">There are four major knobs to tune in Retrieva=
+l: Embedding models, Hybrid search weighting, whether to use AutoCut, and R=
+e-ranker models.</p><p style=3D"box-sizing:border-box;margin-top:0px;margin=
+-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-fami=
+ly:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&qu=
+ot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI=
+ Emoji&quot;">Most RAG developers may instantly jump to tuning the embeddin=
+g model used, such as OpenAI, Cohere, Voyager, Jina AI, Sentence Transforme=
+rs, and many others! Developers also need to consider the dimensionality of=
+ the models and how it affects the PQ compression.<span class=3D"gmail-Appl=
+e-converted-space">=C2=A0</span></p><p style=3D"box-sizing:border-box;margi=
+n-top:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,2=
+0,104);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&q=
+uot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot=
+;,&quot;Segoe UI Emoji&quot;">The next key decision is how to weight the ag=
+gregation of sparse and dense retrieval methods in Hybrid Search. The weigh=
+ting is based on the<span class=3D"gmail-Apple-converted-space">=C2=A0</spa=
+n><code style=3D"box-sizing:border-box;vertical-align:middle;border:0.1rem =
+solid rgba(0,0,0,0.1)">alpha</code><span class=3D"gmail-Apple-converted-spa=
+ce">=C2=A0</span>parameter. An<span class=3D"gmail-Apple-converted-space">=
+=C2=A0</span><code style=3D"box-sizing:border-box;vertical-align:middle;bor=
+der:0.1rem solid rgba(0,0,0,0.1)">alpha</code><span class=3D"gmail-Apple-co=
+nverted-space">=C2=A0</span>of 0 is pure bm25 and an alpha of 1 is pure vec=
+tor search. Therefore, the set<span class=3D"gmail-Apple-converted-space">=
+=C2=A0</span><code style=3D"box-sizing:border-box;vertical-align:middle;bor=
+der:0.1rem solid rgba(0,0,0,0.1)">alpha</code><span class=3D"gmail-Apple-co=
+nverted-space">=C2=A0</span>is dependent on your data and application.<span=
+ class=3D"gmail-Apple-converted-space">=C2=A0</span></p><p style=3D"box-siz=
+ing:border-box;margin-top:0px;margin-right:0px;margin-left:0px;font-size:1.=
+05rem;color:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFont,&qu=
+ot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Ap=
+ple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">Another emerging developm=
+ent is the effectiveness of zero-shot re-ranking models. Weaviate currently=
+ offers 2<span class=3D"gmail-Apple-converted-space">=C2=A0</span><a href=
+=3D"https://weaviate.io/developers/weaviate/modules/retriever-vectorizer-mo=
+dules/reranker-cohere" target=3D"_blank" rel=3D"noopener noreferrer" style=
+=3D"box-sizing:border-box">re-ranking models from Cohere</a>:<span class=3D=
+"gmail-Apple-converted-space">=C2=A0</span><code style=3D"box-sizing:border=
+-box;vertical-align:middle;border:0.1rem solid rgba(0,0,0,0.1)">rerank-engl=
+ish-v2.0</code><span class=3D"gmail-Apple-converted-space">=C2=A0</span>and=
+<span class=3D"gmail-Apple-converted-space">=C2=A0</span><code style=3D"box=
+-sizing:border-box;vertical-align:middle;border:0.1rem solid rgba(0,0,0,0.1=
+)">rerank-multilingual-v2.0</code>. As evidenced from the name, these model=
+s mostly differ because of the training data used and the resulting multili=
+ngual capabilities. In the future, we expect further optionality ablating t=
+he capacity of the model due to inherent trade-offs of performance and late=
+ncy that may make sense for some applications but not others. Discovering j=
+ointly which capacity re-ranker is needed and how many retrieved results to=
+ re-rank is another challenge for tuning the knobs in retrieval. This is al=
+so one of the lowest hanging fruit opportunities for fine-tuning custom mod=
+els in the RAG stack, which we will discuss further in =E2=80=9CTuning Orch=
+estration=E2=80=9D.</p><p style=3D"box-sizing:border-box;margin-top:0px;mar=
+gin-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-f=
+amily:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans=
+&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe=
+ UI Emoji&quot;">Another interesting knob to tune is Multi-Index Search. Si=
+milar to our discussion on chunking, this is a tricky one that may involve =
+structural changes to the database. Broadly there is the question of:<span =
+class=3D"gmail-Apple-converted-space">=C2=A0</span><strong style=3D"box-siz=
+ing:border-box">When does it make sense to use separate collections instead=
+ of filters?</strong><span class=3D"gmail-Apple-converted-space">=C2=A0</sp=
+an>Should<span class=3D"gmail-Apple-converted-space">=C2=A0</span><code sty=
+le=3D"box-sizing:border-box;vertical-align:middle;border:0.1rem solid rgba(=
+0,0,0,0.1)">blogs</code><span class=3D"gmail-Apple-converted-space">=C2=A0<=
+/span>and<span class=3D"gmail-Apple-converted-space">=C2=A0</span><code sty=
+le=3D"box-sizing:border-box;vertical-align:middle;border:0.1rem solid rgba(=
+0,0,0,0.1)">documentation</code><span class=3D"gmail-Apple-converted-space"=
+>=C2=A0</span>be separated into two collections or jointly housed in a<span=
+ class=3D"gmail-Apple-converted-space">=C2=A0</span><code style=3D"box-sizi=
+ng:border-box;vertical-align:middle;border:0.1rem solid rgba(0,0,0,0.1)">Do=
+cument</code><span class=3D"gmail-Apple-converted-space">=C2=A0</span>class=
+ with a<span class=3D"gmail-Apple-converted-space">=C2=A0</span><code style=
+=3D"box-sizing:border-box;vertical-align:middle;border:0.1rem solid rgba(0,=
+0,0,0.1)">source</code><span class=3D"gmail-Apple-converted-space">=C2=A0</=
+span>property?</p><p style=3D"box-sizing:border-box;margin-top:0px;margin-r=
+ight:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family=
+:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot=
+;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI E=
+moji&quot;"><img alt=3D"multi-index" src=3D"https://weaviate.io/assets/imag=
+es/multi-index-61c7bfa6aa16845a1b7e633c3cb91dfb.png" width=3D"1999" height=
+=3D"767" class=3D"gmail-img_ev3q" style=3D"box-sizing: border-box; max-widt=
+h: 100%; height: auto;"></p><p style=3D"box-sizing:border-box;margin-top:0p=
+x;margin-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);f=
+ont-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto=
+ Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;=
+Segoe UI Emoji&quot;">Using filters gives us a quick way to test the utilit=
+y of these labels, because we can add more than one tag to each chunk and t=
+hen ablate how well the classifiers use the labels. There are many interest=
+ing ideas here such as explicitly annotating where the context came from in=
+ the input to the LLM, such as =E2=80=9CHere are search results from blogs =
+{search_results}. Here are search results from documentation {documentation=
+}=E2=80=9D. As LLMs are able to process longer inputs, we expect that conte=
+xt fusion between multiple data sources will become more popular and thus, =
+an associated hyperparameter emerges of how many documents to retrieve from=
+ each index or filter.</p><h3 class=3D"gmail-anchor gmail-anchorWithStickyN=
+avbar_LWe7" id=3D"gmail-generation" style=3D"box-sizing:border-box;font-fam=
+ily:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&q=
+uot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe U=
+I Emoji&quot;;font-weight:500;padding-bottom:0.15em;padding-top:0.5em">Gene=
+ration</h3><p style=3D"box-sizing:border-box;margin-top:0px;margin-right:0p=
+x;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple=
+-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helve=
+tica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&qu=
+ot;">When it comes to Generation, the obvious first place to look is the ch=
+oice of LLM. For example, you have options from OpenAI, Cohere, Facebook, a=
+nd many open-source options. It is also helpful that many LLM frameworks li=
+ke<span class=3D"gmail-Apple-converted-space">=C2=A0</span><a href=3D"https=
+://www.langchain.com/" target=3D"_blank" rel=3D"noopener noreferrer" style=
+=3D"box-sizing:border-box">LangChain</a>and<span class=3D"gmail-Apple-conve=
+rted-space">=C2=A0</span><a href=3D"https://www.llamaindex.ai/" target=3D"_=
+blank" rel=3D"noopener noreferrer" style=3D"box-sizing:border-box">LlamaInd=
+ex</a>, and<span class=3D"gmail-Apple-converted-space">=C2=A0</span><a href=
+=3D"https://weaviate.io/developers/weaviate/modules/reader-generator-module=
+s/generative-openai" style=3D"box-sizing:border-box">Weaviate=E2=80=99s gen=
+erate module</a><span class=3D"gmail-Apple-converted-space">=C2=A0</span>of=
+fer easy integrations into various models. The model that you choose can be=
+ dependent on whether you want to keep your data private, the cost, resourc=
+es, and more.</p><p style=3D"box-sizing:border-box;margin-top:0px;margin-ri=
+ght:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:=
+-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;=
+,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Em=
+oji&quot;">A common LLM specific knob that you can tune is the temperature.=
+ The temperature setting controls the amount of randomness in the output. A=
+ temperature of 0 means that the response is more predictable and will vary=
+ less. A temperature of 1 gives the model the ability to introduce randomne=
+ss and creativity into its responses. Therefore, if you=E2=80=99re running =
+the generative model more than once and it has a temperature of 1, the resp=
+onses can vary after each rerun.</p><p style=3D"box-sizing:border-box;margi=
+n-top:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,2=
+0,104);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&q=
+uot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot=
+;,&quot;Segoe UI Emoji&quot;">Long context models are an emerging direction=
+ for choosing the LLM for your application. Does adding more search results=
+ to the input improve answer quality? The Lost in the Middle experiments ha=
+ve tempered expectations here a bit. In<span class=3D"gmail-Apple-converted=
+-space">=C2=A0</span><a href=3D"https://arxiv.org/abs/2307.03172" target=3D=
+"_blank" rel=3D"noopener noreferrer" style=3D"box-sizing:border-box">Lost i=
+n the Middle</a>, researchers from Stanford University, UC Berkeley, and Sa=
+maya AI presented controlled experiments showing that if relevant informati=
+on was placed in the middle of search results, rather than the beginning or=
+ end, the language model would be unable to integrate it in the generated r=
+esponse. Another paper from researchers at Google DeepMind, Toyota, and Pur=
+due University showed that<span class=3D"gmail-Apple-converted-space">=C2=
+=A0</span><a href=3D"https://arxiv.org/abs/2302.00093" target=3D"_blank" re=
+l=3D"noopener noreferrer" style=3D"box-sizing:border-box">=E2=80=9CLarge La=
+nguage Models Can Be Easily Distracted by Irrelevant Contex.=E2=80=9D</a><s=
+pan class=3D"gmail-Apple-converted-space">=C2=A0</span>Although the potenti=
+al is captivating, at the time of this writing, it seems early on for Long-=
+Context RAG. Luckily, metrics such as the Ragas score are here to help us q=
+uickly test the new systems!</p><p style=3D"box-sizing:border-box;margin-to=
+p:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,10=
+4);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;=
+Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&q=
+uot;Segoe UI Emoji&quot;">Similar to our earlier discussion on recent break=
+throughs in LLM Evaluation, there are 3 stages of tuning for generation: 1.=
+ Prompt tuning, 2. Few-Shot Examples, and 3. Fine-Tuning. Prompt tuning ent=
+ails tweaking the particular language used such as: =E2=80=9CPlease answer =
+the question based on the provided search results.=E2=80=9D versus =E2=80=
+=9CPlease answer the question. IMPORTANT, please follow these instructions =
+closely. Your answer to the question must be grounded in the provided searc=
+h results and nothing else!!=E2=80=9D.</p><p style=3D"box-sizing:border-box=
+;margin-top:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;color:rg=
+b(28,20,104);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&qu=
+ot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoj=
+i&quot;,&quot;Segoe UI Emoji&quot;">As described earlier, Few-Shot Examples=
+ describes collecting a few manually written examples of question, context,=
+ answer pairs to guide the language model=E2=80=99s generation. Recent rese=
+arch such as<span class=3D"gmail-Apple-converted-space">=C2=A0</span><a hre=
+f=3D"https://arxiv.org/abs/2311.06668" target=3D"_blank" rel=3D"noopener no=
+referrer" style=3D"box-sizing:border-box">=E2=80=9CIn-Context Vectors=E2=80=
+=9D</a><span class=3D"gmail-Apple-converted-space">=C2=A0</span>are further=
+ pointing to the importance of guiding latent space like this. We were usin=
+g GPT-3.5-turbo to generate Weaviate queries in the Weaviate Gorilla projec=
+t and performance skyrocketed once we added few-shot examples of natural la=
+nguage to query translations.</p><p style=3D"box-sizing:border-box;margin-t=
+op:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,1=
+04);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot=
+;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&=
+quot;Segoe UI Emoji&quot;">Lastly, there is increasing interest in fine-tun=
+ing LLMs for RAG applications. There are a couple of flavors to consider wi=
+th this. Again reminiscent of our discussion of LLM Evaluation, we may want=
+ to use a more powerful LLM to generate the training data to produce a smal=
+ler, more economical model owned by you. Another idea could be to provide h=
+uman annotations of response quality to fine-tune an LLM with instruction f=
+ollowing. If you=E2=80=99re interested in fine-tuning models, check out thi=
+s<span class=3D"gmail-Apple-converted-space">=C2=A0</span><a href=3D"https:=
+//brev.dev/blog/fine-tuning-mistral" target=3D"_blank" rel=3D"noopener nore=
+ferrer" style=3D"box-sizing:border-box">tutorial</a><span class=3D"gmail-Ap=
+ple-converted-space">=C2=A0</span>from Brev on how to use the HuggingFace P=
+EFT library.</p><h3 class=3D"gmail-anchor gmail-anchorWithStickyNavbar_LWe7=
+" id=3D"gmail-concluding-thoughts-on-rag-knobs-to-tune" style=3D"box-sizing=
+:border-box;font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quo=
+t;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji=
+&quot;,&quot;Segoe UI Emoji&quot;;font-weight:500;padding-bottom:0.15em;pad=
+ding-top:0.5em">Concluding thoughts on RAG Knobs to Tune</h3><p style=3D"bo=
+x-sizing:border-box;margin-top:0px;margin-right:0px;margin-left:0px;font-si=
+ze:1.05rem;color:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFon=
+t,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&qu=
+ot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">In conclusion, we ha=
+ve presented the main knobs to tune in RAG systems:</p><ul style=3D"box-siz=
+ing:border-box;font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&=
+quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Em=
+oji&quot;,&quot;Segoe UI Emoji&quot;;color:rgb(28,20,104);font-size:16px"><=
+li style=3D"box-sizing:border-box">Indexing: At the highest level, we consi=
+der when to just use brute force and when to bring in an ANN index. This is=
+ especially interesting when tuning a multi-tenant use case with new versus=
+ power users. Within ANN indexing, we have PQ=E2=80=99s hyperparameters of =
+(segments, centroids, and the training limit). HNSW comes with (ef, efConst=
+ruction, and maxConnections).</li><li style=3D"box-sizing:border-box">Retri=
+eval: Choosing an embedding model, weighting hybrid search, choosing a re-r=
+anker, and dividing collections into multiple indexes.</li><li style=3D"box=
+-sizing:border-box">Generation: Choosing an LLM and when to make the transi=
+tion from Prompt Tuning to Few-Shot Examples, or Fine-Tuning.</li></ul><p s=
+tyle=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;margin-left:0=
+px;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple-system,BlinkMa=
+cSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans=
+-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">Armed with=
+ an understanding of RAG metrics and what we can tune to improve them. Let=
+=E2=80=99s discuss what experiment tracking may look like.</p><h2 class=3D"=
+gmail-anchor gmail-anchorWithStickyNavbar_LWe7" id=3D"gmail-tuning-orchestr=
+ation" style=3D"box-sizing:border-box;font-family:-apple-system,BlinkMacSys=
+temFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-ser=
+if,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;;font-weight:500=
+;padding-bottom:0.25em;padding-top:0.7em">Tuning Orchestration</h2><p style=
+=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;margin-left:0px;f=
+ont-size:1.05rem;color:rgb(28,20,104);font-family:-apple-system,BlinkMacSys=
+temFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-ser=
+if,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">Given the rece=
+nt advances in LLM Evaluation and an overview of some of the knobs to tune,=
+ one of the most exciting opportunities is to tie all this together with ex=
+periment tracking frameworks. For example, a simple orchestrator that has a=
+n intuitive API for a human user to 1. request an exhaustive test of say: 5=
+ LLMs, 2 embedding models, and 5 index configurations, 2. run the experimen=
+ts, and 3. return a high quality report to the human user. Weights &amp; Bi=
+ases has paved an incredible experiment tracking path for training deep lea=
+rning models. We expect interest to accelerate in this kind of support for =
+RAG experimentation with the knobs and metrics we have outlined in this art=
+icle.</p><p style=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;=
+margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple-s=
+ystem,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helveti=
+ca,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot=
+;">There are a couple of directions we are watching this evolve in. One on =
+hand, the Zero-Shot LLMs out there such as GPT-4, Command, Claude, and open=
+-source options such as Llama-2 and Mistral perform fairly well when they h=
+ave<span class=3D"gmail-Apple-converted-space">=C2=A0</span><strong style=
+=3D"box-sizing:border-box">oracle context</strong>. Thus, there is a massiv=
+e opportunity to<span class=3D"gmail-Apple-converted-space">=C2=A0</span><s=
+trong style=3D"box-sizing:border-box">focus solely on the search half</stro=
+ng>. This requires finding the needle in the haystack of configurations tha=
+t trade-off ANN error from PQ or HNSW trade-offs, with embedding models, hy=
+brid search weightings, and re-ranking as described earlier in the article.=
+</p><p style=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;margi=
+n-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple-system=
+,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Ar=
+ial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">We=
+aviate 1.22 introduces Async Indexing with corresponding node status APIs. =
+Our hope with partnerships focusing on RAG evaluation and tuning orchestrat=
+ion, is that they can use these APIs to see when an index is finished build=
+ing and then run the test. This is particularly exciting when considering i=
+nterfaces between these node statuses and tuning orchestration per tenant w=
+here some tenants may get away with brute force, and others need to find th=
+e right embedding model and HNSW configuration for their data.</p><p style=
+=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;margin-left:0px;f=
+ont-size:1.05rem;color:rgb(28,20,104);font-family:-apple-system,BlinkMacSys=
+temFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-ser=
+if,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">Further, we ma=
+y want to speed up testing by parallelizing resource allocation. For exampl=
+e, evaluating 4 embedding models at the same time. As discussed earlier, an=
+other interesting component to this is tuning chunking or other symbolic me=
+tadata that may come from our data importer. To paint the picture with an e=
+xample, the Weaviate Verba dataset contains 3 folders of Weaviate<span clas=
+s=3D"gmail-Apple-converted-space">=C2=A0</span><code style=3D"box-sizing:bo=
+rder-box;vertical-align:middle;border:0.1rem solid rgba(0,0,0,0.1)">Blogs</=
+code>,<span class=3D"gmail-Apple-converted-space">=C2=A0</span><code style=
+=3D"box-sizing:border-box;vertical-align:middle;border:0.1rem solid rgba(0,=
+0,0,0.1)">Documentation</code>, and<span class=3D"gmail-Apple-converted-spa=
+ce">=C2=A0</span><code style=3D"box-sizing:border-box;vertical-align:middle=
+;border:0.1rem solid rgba(0,0,0,0.1)">Video</code><span class=3D"gmail-Appl=
+e-converted-space">=C2=A0</span>transcripts. If we want to ablate chunk siz=
+es of 100 versus 300, it probably doesn=E2=80=99t make sense to re-invoke t=
+he web scraper. We instead may want to have another format, whether that be=
+ data stored in an S3 bucket or something else, that has the associated met=
+adata with it, but provides a more economical way to experiment with this.<=
+/p><p style=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;margin=
+-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple-system,=
+BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Ari=
+al,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">On =
+the other hand, we have model fine-tuning and continual learning with gradi=
+ents, rather than data inserts or updates. The most common models used in R=
+AG are embeddings, re-rankers, and of course, LLMs. Keeping machine learnin=
+g models fresh with new data has been a longstanding focus of continual lea=
+rning frameworks and MLops orchestration that manage the re-training and te=
+sting and deployment of new models. Starting with continual learning of LLM=
+s, one of the biggest selling points of RAG systems is the ability to exten=
+d the =E2=80=9Ccut-off=E2=80=9D date of the LLM=E2=80=99s knowledge base, k=
+eeping it up to date with your data. Can the LLM do this directly? We don=
+=E2=80=99t believe it is clear what the interaction effect will be between =
+continued training and keeping information fresh purely with RAG. Some rese=
+arch, such as MEMIT, experiments with updating facts such as =E2=80=9CLeBro=
+n James plays basketball=E2=80=9D to =E2=80=9CLeBron James plays soccer=E2=
+=80=9D purely using causal mediation analysis of weight attribution. This i=
+s quite an advanced technique, and another opportunity could be simply tagg=
+ing the chunks used in training such as =E2=80=9CLeBron James plays basketb=
+all=E2=80=9D and re-training with retrieval-augmented training data with th=
+e new information. This is a major area we are keeping an eye on.</p><p sty=
+le=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;margin-left:0px=
+;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple-system,BlinkMacS=
+ystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-s=
+erif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">As mentioned=
+ earlier, we are also thinking of how to interface this kind of continual t=
+uning directly into Weaviate with PQ centroids. The PQ centroids fit with t=
+he first K vectors that enter Weaviate may be impacted by a significant shi=
+ft in the data distribution. The continual training of machine learning mod=
+els has a notorious =E2=80=9Ccatastrophic forgetting=E2=80=9D problem where=
+ training on the newest batch of data harms performance on earlier batches =
+of data. This is also something that we are considering with the design of =
+re-fitting PQ centroids.</p><h2 class=3D"gmail-anchor gmail-anchorWithStick=
+yNavbar_LWe7" id=3D"gmail-from-rag-to-agent-evaluation" style=3D"box-sizing=
+:border-box;font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quo=
+t;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji=
+&quot;,&quot;Segoe UI Emoji&quot;;font-weight:500;padding-bottom:0.25em;pad=
+ding-top:0.7em">From RAG to Agent Evaluation</h2><p style=3D"box-sizing:bor=
+der-box;margin-top:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;c=
+olor:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFont,&quot;Sego=
+e UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Col=
+or Emoji&quot;,&quot;Segoe UI Emoji&quot;">Throughout the article, we have =
+been concerned with<span class=3D"gmail-Apple-converted-space">=C2=A0</span=
+><strong style=3D"box-sizing:border-box">RAG</strong>, rather than<span cla=
+ss=3D"gmail-Apple-converted-space">=C2=A0</span><strong style=3D"box-sizing=
+:border-box">Agent</strong><span class=3D"gmail-Apple-converted-space">=C2=
+=A0</span>Evaluation. In our view<span class=3D"gmail-Apple-converted-space=
+">=C2=A0</span><strong style=3D"box-sizing:border-box">RAG</strong><span cl=
+ass=3D"gmail-Apple-converted-space">=C2=A0</span>is defined by the flow of =
+Index, Retrieve, and Generate, whereas<span class=3D"gmail-Apple-converted-=
+space">=C2=A0</span><strong style=3D"box-sizing:border-box">Agents</strong>=
+<span class=3D"gmail-Apple-converted-space">=C2=A0</span>have a more open-e=
+nded scope. The illustration below denotes how we see major components such=
+ as Planning, Memory, and Tools that jointly add significant power to your =
+system, but also make it more difficult to evaluate.</p><img src=3D"https:/=
+/weaviate.io/assets/images/agents-d454d8169fbdc89ca73f7e23224a5122.png" alt=
+=3D"Agents meme" class=3D"gmail-img_ev3q" style=3D"box-sizing: border-box; =
+max-width: 60%; height: auto; caret-color: rgb(28, 20, 104); color: rgb(28,=
+ 20, 104); font-family: -apple-system, BlinkMacSystemFont, &quot;Segoe UI&q=
+uot;, &quot;Noto Sans&quot;, Helvetica, Arial, sans-serif, &quot;Apple Colo=
+r Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 16px;"><p style=3D"bo=
+x-sizing:border-box;margin-top:0px;margin-right:0px;margin-left:0px;font-si=
+ze:1.05rem;color:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFon=
+t,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&qu=
+ot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">A common next step f=
+or RAG applications is to add advanced query engines. For interested reader=
+s new to the concept, please check out<span class=3D"gmail-Apple-converted-=
+space">=C2=A0</span><a href=3D"https://www.youtube.com/watch?v=3DSu-ROQMaia=
+w" target=3D"_blank" rel=3D"noopener noreferrer" style=3D"box-sizing:border=
+-box">Episode 3</a><span class=3D"gmail-Apple-converted-space">=C2=A0</span=
+>of our LlamaIndex and Weaviate series that provides python code examples o=
+f how to get started. There are many different advanced query engines, such=
+ as the Sub-Question Query Engine, SQL Router, Self-Correcting Query Engine=
+, and more. We are also considering how a promptToQuery API or Search Query=
+ Extractor could look like in Weaviate=E2=80=99s modules. Each query engine=
+ has its own strengths in the information retrieval process, let=E2=80=99s =
+dive into a couple of them and how we might think about evaluation.</p><img=
+ src=3D"https://weaviate.io/assets/images/sub-question-ebe65215f4f48c18532b=
+ceebea02a053.png" alt=3D"Sub Question Query Engine" class=3D"gmail-img_ev3q=
+" style=3D"box-sizing: border-box; max-width: 60%; height: auto; caret-colo=
+r: rgb(28, 20, 104); color: rgb(28, 20, 104); font-family: -apple-system, B=
+linkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quot;, Helvetica, =
+Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot=
+;; font-size: 16px;"><p style=3D"box-sizing:border-box;margin-top:0px;margi=
+n-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-fam=
+ily:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&q=
+uot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe U=
+I Emoji&quot;">Multi-hop query engines (otherwise known as<span class=3D"gm=
+ail-Apple-converted-space">=C2=A0</span><a href=3D"https://gpt-index.readth=
+edocs.io/en/latest/examples/query_engine/sub_question_query_engine.html" ta=
+rget=3D"_blank" rel=3D"noopener noreferrer" style=3D"box-sizing:border-box"=
+>sub question query engine</a>) are great at breaking down complex question=
+s into sub-questions. In the visual above, we have the query =E2=80=9CWhat =
+is Ref2Vec in Weaviate?=E2=80=9D To answer this question, you need to know =
+what Ref2Vec and Weaviate are separately. Therefore, two calls will need to=
+ be made to your database to retrieve relevant context based on the two que=
+stions. The two answers are then combined to generate one output. Evaluatin=
+g the performance of multi-hop query engines can be done by observing the s=
+ub questions. It is important that the LLM is creating relevant sub questio=
+ns, answering each accurately, and combining the two answers to provide a f=
+actual and relevant output. Additionally, if you=E2=80=99re asking complex =
+questions, it is probably best to utilize the multi-hop query engine.</p><p=
+ style=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;margin-left=
+:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple-system,Blink=
+MacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sa=
+ns-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;">A multi-=
+hop question is firstly dependent on the accuracy of the sub-questions. We =
+can imagine a similar LLM Evaluation used here with the prompt: =E2=80=9CGi=
+ven the question: {query}. A system decided to break it into the sub questi=
+ons {sub_question_1} and {sub_question_2}. Does this decomposition of the q=
+uestion make sense?=E2=80=9D. We then have two separate RAG evaluations for=
+ each of the sub questions, and then an evaluation of whether the LLM was a=
+ble to combine the answers from each question to answer the original questi=
+on.</p><p style=3D"box-sizing:border-box;margin-top:0px;margin-right:0px;ma=
+rgin-left:0px;font-size:1.05rem;color:rgb(28,20,104);font-family:-apple-sys=
+tem,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;Noto Sans&quot;,Helvetica=
+,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&quot;Segoe UI Emoji&quot;"=
+>As another example of evolving complexity from RAG to Agents, let=E2=80=99=
+s consider Routing Query Engines. The following visual illustrates an agent=
+ routing a query to either an SQL or Vector Database query. This case is qu=
+ite similar to our discussion of Multi-Index Routing and we can similarly e=
+valuate generations with a prompt that explains the needs for SQL and Vecto=
+r Databases and then asks the LLM whether the router made the right decisio=
+n. We can also use the RAGAS Context Relevance score for the results of the=
+ SQL query.</p><img src=3D"https://weaviate.io/assets/images/sql-router-317=
+62ca0dbbde0eee529a564c0c0e541.png" alt=3D"SQL Router Query Engine" class=3D=
+"gmail-img_ev3q" style=3D"box-sizing: border-box; max-width: 60%; height: a=
+uto; caret-color: rgb(28, 20, 104); color: rgb(28, 20, 104); font-family: -=
+apple-system, BlinkMacSystemFont, &quot;Segoe UI&quot;, &quot;Noto Sans&quo=
+t;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Sego=
+e UI Emoji&quot;; font-size: 16px;"><p style=3D"box-sizing:border-box;margi=
+n-top:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,2=
+0,104);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&q=
+uot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot=
+;,&quot;Segoe UI Emoji&quot;">Concluding our discussion of =E2=80=9CFrom RA=
+G to Agent Evaluation=E2=80=9D, we believe that it is still too early to te=
+ll what the common patterns will be for agent use. We have intentionally sh=
+own the multi-hop query engine and query router because these are relativel=
+y straightforward to understand. Once we add more open-ended planning loops=
+, tool use and the associated evaluation of how well the model can format A=
+PI requests to the tool, and more meta internal memory management prompts s=
+uch as the ideas in MemGPT, it is very difficult to provide a general abstr=
+action around how Agents will be evaluated.</p><h2 class=3D"gmail-anchor gm=
+ail-anchorWithStickyNavbar_LWe7" id=3D"gmail-conclusion" style=3D"box-sizin=
+g:border-box;font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&qu=
+ot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoj=
+i&quot;,&quot;Segoe UI Emoji&quot;;font-weight:500;padding-bottom:0.25em;pa=
+dding-top:0.7em">Conclusion</h2><p style=3D"box-sizing:border-box;margin-to=
+p:0px;margin-right:0px;margin-left:0px;font-size:1.05rem;color:rgb(28,20,10=
+4);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI&quot;,&quot;=
+Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color Emoji&quot;,&q=
+uot;Segoe UI Emoji&quot;">Thank you so much for reading our overview of RAG=
+ Evaluation! As a quick recap, we began by covering new trends in using LLM=
+s for Evaluation, providing enormous cost and time savings for iterating on=
+ RAG systems. We then provided some more background on the traditional metr=
+ics used to evaluate the RAG stack from Generation, to Search, and then Ind=
+exing. For builders looking to improve their performance on these metrics, =
+we then presented some knobs to tune in Indexing, then Search, and Generati=
+on. We presented the incoming challenge of experiment tracking for these sy=
+stems, and our view on what differentiates RAG evaluation from Agent evalua=
+tion. We hope you found this article useful!=C2=A0</p><span lang=3D"en" sty=
+le=3D"width:100%;border:medium;min-height:150px;box-sizing:border-box;color=
+:rgb(28,20,104);font-family:-apple-system,BlinkMacSystemFont,&quot;Segoe UI=
+&quot;,&quot;Noto Sans&quot;,Helvetica,Arial,sans-serif,&quot;Apple Color E=
+moji&quot;,&quot;Segoe UI Emoji&quot;;font-size:16px;margin-bottom:0px"></s=
+pan></div></div>
+
+--0000000000000749600616fffec2--
